@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: laravel_app
+    container_name: laravel_app
+    restart: unless-stopped
+    ports:
+      - "8000:9001"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+    command: ["wait-for-it.sh", "mysql:3306", "--timeout=30", "--", "php-fpm"]
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root         # Set the root password here
+      MYSQL_DATABASE: laravel_db       # Database name to create
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

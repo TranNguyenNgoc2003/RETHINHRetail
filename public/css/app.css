@@ -1,0 +1,12 @@
+
+.navbar_page{
+    background-color: red;
+}
+.navbar_page a{
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+}
+.navbar_page a:hover{
+    color: white;
+}
