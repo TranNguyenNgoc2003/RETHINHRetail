@@ -1,5 +1,5 @@
-@extends('layouts.loginAndRegister')
+@extends('layouts.app')
 
-@section('content')
-    
+@section('content_app')
+
 @endsection

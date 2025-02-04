@@ -25,6 +25,6 @@ class SocialLoginCallback extends Controller
 
         Auth::login($user, true);
 
-        return redirect()->route('home')->withSuccess("You have successfully logged in with $provider!");
+        return redirect()->route('home');
     }
 }

@@ -81,7 +81,7 @@ class LoginRegisterController extends Controller implements HasMiddleware
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
 }
