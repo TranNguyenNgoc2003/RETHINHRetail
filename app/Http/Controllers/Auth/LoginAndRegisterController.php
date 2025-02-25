@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Laravel\Socialite\Facades\Socialite;
 
-class LoginRegisterController extends Controller implements HasMiddleware
+class LoginAndRegisterController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
@@ -70,6 +70,7 @@ class LoginRegisterController extends Controller implements HasMiddleware
             'email' => 'Your provided credentials do not match in our records',
         ])->onlyInput('email');
     }
+
 
     public function home(): View
     {
