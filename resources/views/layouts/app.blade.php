@@ -11,63 +11,64 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+    @vite(['resources/js/app.js'])
 
 </head>
 
-<body>
-    <header class="header-area header-sticky">
+<body class="page">
+    <header class="header">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <nav class="main-nav">
-                        <a href="index.html" class="logo">
+                    <nav class="header__main">
+                        <a href="index.html" class="header__main--logo">
                             <img src="{{ asset('images/storetech-logo.png') }}">
                         </a>
 
-                        <ul class="nav">
-                            <li class="search-container">
-                                <input type="text" class="form-control search-input" placeholder="Tìm kiếm...">
-                                <i class="fas fa-search search-icon"></i>
+                        <ul class="header__main--nav list">
+                            <li class="list__search-container search">
+                                <input type="text" class="form-control search__input" placeholder="Tìm kiếm...">
+                                <i class="fas fa-search search__icon"></i>
                             </li>
-                            <li class="scroll-to-section"><a href="#">Trang chủ</a></li>
-                            <li class="submenu">
-                                <a href="#">Danh mục</a>
-                                <ul>
-                                    <li><a href="#">Điện thoại</a></li>
-                                    <li><a href="#">Laptop</a></li>
-                                    <li><a href="#">Âm thanh</a></li>
-                                    <li><a href="#">Đồng hồ, Camera</a></li>
-                                    <li><a href="#">Đồ gia dụng</a></li>
-                                    <li><a href="#">Phụ kiện</a></li>
-                                    <li><a href="#">PC, Màn hình, Máy in</a></li>
-                                    <li><a href="#">Tivi</a></li>
-                                    <li><a href="#">Khuyến mãi</a></li>
-                                    <li><a href="#">Tin công nghệ</a></li>
+                            <li class="list__scroll-to-section item"><a class="item__link" href="#">Trang chủ</a></li>
+                            <li class="list__submenu item">
+                                <a class="item__link" href="#">Danh mục</a>
+                                <ul class="item__dropdown">
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Điện thoại</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Laptop</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Âm thanh</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Đồng hồ, Camera</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Đồ gia dụng</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Phụ kiện</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">PC, Màn hình, Máy in</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Tivi</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Khuyến mãi</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Tin công nghệ</a></li>
                                 </ul>
                             </li>
-                            <li class="scroll-to-section"><a href="#">Liên hệ</a></li>
-                            <li class="submenu">
-                                <a href="#">Cửa hàng</a>
-                                <ul>
-                                    <li><a href="#">Giỏ hàng</a></li>
-                                    <li><a href="#">Đơn hàng</a></li>
-                                    <li><a href="#">Voucher</a></li>                              
-                                    <li><a href="#">Lịch sử mua hàng</a></li>                              
-                                    <li><a href="#">Đánh giá</a></li>
+                            <li class="list__scroll-to-section item"><a class="item__link" href="#">Liên hệ</a></li>
+                            <li class="list__submenu item">
+                                <a class="item__link" href="#">Cửa hàng</a>
+                                <ul class="item__dropdown">
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Giỏ hàng</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Đơn hàng</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Voucher</a></li>                              
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Lịch sử mua hàng</a></li>                              
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Đánh giá</a></li>
                                 </ul>
                             </li>
-                            <li class="submenu">
+                            <li class="list__submenu item">
                                 @guest
-                                    <a class=" {{ request()->is('login') ? 'active' : '' }}"
+                                    <a class="item__link {{ request()->is('login') ? '--active' : '' }}"
                                         href="{{ route('login') }}">Đăng nhập</a>
                                 @else
-                                    <a href="#">{{ Auth::user()->fullname }}</a>
-                                    <ul>
-                                        <li><a href="#">Thông tin cá nhân</a></li>
-                                        <li><a href="#">Thông tin thanh toán</a></li>
-                                        <li><a href="#">Địa chỉ nhận hàng</a></li>
-                                        <li><a href="{{ route('logout') }}"
+                                    <a class="item__link" href="#">{{ Auth::user()->fullname }}</a>
+                                    <ul class="item__dropdown">
+                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Thông tin cá nhân</a></li>
+                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Thông tin thanh toán</a></li>
+                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Địa chỉ nhận hàng</a></li>
+                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">Đăng xuất</a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -88,24 +89,24 @@
 
     @yield('content_app')
 
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="first-item">
-                        <div class="logo">
+                <div class="col-lg-3 column">
+                    <div class="first-item column__item">
+                        <div class="column__item--logo">
                             <img src="{{ asset('images/storetech-logo.png') }}">
                         </div>
-                        <ul>
+                        <ul class="column__item--contact">
                             <li><a href="#"><i class="fas fa-map-marker-alt"></i>456 Lê Duẩn, Quận Hải Châu, TP Đà Nẵng</a></li>
                             <li><a href="#"><i class="fas fa-envelope"></i>support@rethinkretail.com</a></li>
                             <li><a href="#"><i class="fas fa-phone"></i>1800-1234</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <h4>Danh mục sản phẩm</h4>
-                    <ul>
+                <div class="col-lg-3 column">
+                    <h4 class="column__item--title">Danh mục sản phẩm</h4>
+                    <ul class="column__item--list">
                         <li><a href="#">Điện thoại</a></li>
                         <li><a href="#">Máy tính bảng</a></li>
                         <li><a href="#">Laptop</a></li>
@@ -114,18 +115,18 @@
                         <li><a href="#">Phụ kiện</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
-                    <h4>Thông tin hữu ích</h4>
-                    <ul>
+                <div class="col-lg-3 column">
+                    <h4 class="column__item--title">Thông tin hữu ích</h4>
+                    <ul class="column__item--list">
                         <li><a href="#">Chính sách bảo hành</a></li>
                         <li><a href="#">Chính sách đổi trả</a></li>
                         <li><a href="#">Hướng dẫn mua hàng</a></li>
                         <li><a href="#">Hệ thống cửa hàng</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
-                    <h4>Hỗ trợ khách hàng</h4>
-                    <ul>
+                <div class="col-lg-3 column">
+                    <h4 class="column__item--title">Hỗ trợ khách hàng</h4>
+                    <ul class="column__item--list">
                         <li><a href="#">Trung tâm trợ giúp</a></li>
                         <li><a href="#">Câu hỏi thường gặp</a></li>
                         <li><a href="#">Theo dõi đơn hàng</a></li>
