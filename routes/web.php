@@ -19,4 +19,4 @@ Route::prefix('social')->group(function () {
     Route::get('{provider}', [SocialLogin::class, 'redirectToProvider'])->name('social.login');
     Route::get('{provider}/callback', [SocialLoginCallback::class, 'handleProviderCallback']);
 });
-Route::get('/home', [ProductController::class, 'getProduct'])->name('auth.home');
+Route::get('/home', [ProductController::class, 'getProduct'])->name('home');
