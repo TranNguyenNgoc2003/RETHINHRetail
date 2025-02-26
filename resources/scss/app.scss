@@ -474,20 +474,22 @@ products list
 .product {
     margin-top: 20px;
     margin-bottom: 20px;
+
     &__title {
         color: #4d4d4d;
         font-weight: 700;
         margin-bottom: 10px;
     }
-    &__col{
+
+    &__col {
         margin-top: 2%;
     }
-    &__row{
+
+    &__row {
         display: flex;
     }
 
     &__card {
-        text-decoration: none;
         padding-top: 10px;
         transition: all 0.3s ease;
         overflow: hidden;
@@ -497,6 +499,10 @@ products list
         box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
         height: 100%;
         position: relative;
+
+        a {
+            text-decoration: none;
+        }
 
         &--badge {
             font-size: 14px;
@@ -543,8 +549,6 @@ products list
             }
         }
     }
-
-
 
     &__card:hover {
         transform: translateY(-5px);
