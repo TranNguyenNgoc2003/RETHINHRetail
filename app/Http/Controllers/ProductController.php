@@ -12,9 +12,4 @@ class ProductController extends Controller
         $products = Product::all();
         return view('auth.home', compact('products'));
     }
-    // public function getTopProduct()
-    // {
-    //     $products = Product::orderBy('rating', 'desc')->take(8)->get();
-    //     return view('auth.home', compact('products'));
-    // }
 }
