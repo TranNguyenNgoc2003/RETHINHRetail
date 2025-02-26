@@ -197,11 +197,11 @@ header
         }
     }
 
-    &:hover .item__link {
+    &:hover &__link {
         color: #aaa !important;
     }
 
-    &:hover .item__dropdown {
+    &:hover &__dropdown {
         visibility: visible;
         opacity: 1;
         z-index: 1;
@@ -309,7 +309,162 @@ header
 banner
 --------------------------------------------- 
 */
+.banner {
+    border-bottom: 3px dotted #eee;
+    padding-top: 160px;
+    padding-bottom: 30px;
 
+    &__content {
+        &--left {}
+
+        &--right {}
+    }
+}
+
+.left {
+    &__thumb {
+        &--inner {
+            position: absolute;
+            left: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            &-title {
+                color: #fff;
+                margin-top: -10px;
+                font-size: 52px;
+                font-weight: 700;
+                margin-bottom: 20px;
+            }
+
+            &-description {
+                font-size: 16px;
+                color: #fff;
+                font-weight: 400;
+                font-style: italic;
+                display: block;
+                margin-bottom: 30px;
+            }
+
+            &-button {
+                a {
+                    text-decoration: none;
+                    font-size: 13px;
+                    color: #fff;
+                    border: 1px solid #fff;
+                    padding: 12px 25px;
+                    display: inline-block;
+                    font-weight: 500;
+                    transition: all .3s;
+                }
+
+                a:hover {
+                    background-color: #fff;
+                    color: #2a2a2a;
+                }
+            }
+        }
+
+        &--image {
+            width: 100%;
+            overflow: hidden;
+        }
+    }
+}
+
+.right {
+    margin-bottom: 25px;
+
+    &__thumb {
+        position: relative;
+        text-align: center;
+
+        &--inner {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            text-align: center;
+
+            &-title {
+                color: #fff;
+                font-size: 24px;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            &-description {
+                font-size: 16px;
+                color: #fff;
+                font-style: italic;
+            }
+        }
+
+        &--hover {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            left: 15px;
+            bottom: 15px;
+            text-align: center;
+            background-color: rgba(42, 42, 42, .97);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+        }
+
+        &--image {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        &:hover &--hover {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.hover {
+    &__inner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+
+        &--title {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        &--description {
+            color: #fff;
+            padding: 0px 20px;
+            margin-bottom: 20px;
+        }
+
+        &--button {
+            a {
+                text-decoration: none;
+                font-size: 13px;
+                color: #fff;
+                border: 1px solid #fff;
+                padding: 12px 25px;
+                display: inline-block;
+                font-weight: 500;
+                transition: all .3s;
+            }
+
+            a:hover {
+                background-color: #fff;
+                color: #2a2a2a;
+            }
+        }
+    }
+}
 
 /* 
 ---------------------------------------------
