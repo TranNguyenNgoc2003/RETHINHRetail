@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginAndRegisterController;
 use App\Http\Controllers\Auth\SocialLogin;
 use App\Http\Controllers\Auth\SocialLoginCallback;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(LoginAndRegisterController::class)->group(function () {
@@ -18,3 +19,4 @@ Route::prefix('social')->group(function () {
     Route::get('{provider}', [SocialLogin::class, 'redirectToProvider'])->name('social.login');
     Route::get('{provider}/callback', [SocialLoginCallback::class, 'handleProviderCallback']);
 });
+Route::get('/home', [ProductController::class, 'getProduct'])->name('auth.home');
