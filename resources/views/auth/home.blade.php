@@ -133,7 +133,7 @@
                             <div class="product__card--content-rating rating">
                                 <div class="rating__star">
                                     @for ($i = 1; $i <= 5; $i++)
-                                        <i class="fas fa-star {{ $i <= $product->rating ? 'text-warning' : '' }}"></i>
+                                        <i class="fas fa-star {{ $i <= $product->rating ? 'text-warning' : 'text-secondary' }}"></i>
                                     @endfor
                                 </div>
                                 <small class="rating__count">({{ $product->rating }}/5)</small>
