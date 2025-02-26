@@ -482,8 +482,12 @@ products list
     &__col{
         margin-top: 2%;
     }
+    &__row{
+        display: flex;
+    }
 
     &__card {
+        text-decoration: none;
         padding-top: 10px;
         transition: all 0.3s ease;
         overflow: hidden;

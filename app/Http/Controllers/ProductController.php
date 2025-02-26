@@ -10,6 +10,6 @@ class ProductController extends Controller
     public function getProduct()
     {
         $products = Product::all();
-        return view('auth.home', compact('products'));
+        return view('home', compact('products'));
     }
 }

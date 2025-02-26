@@ -117,10 +117,10 @@
     </div>
     <div class="container product">
         <h3 class="product__title">SẢN PHẨM NỔI BẬT NHẤT</h3>
-        <div class="row">
+        <div class="row product__row">
             @foreach ($products->sortByDesc('rating')->take(8) as $product)
                 <div class="col-md-3 product__col">
-                    <div class="product__card">
+                    <a href="{{--{{ route('product.detail', ['id' => $product->id]) }}--}}" class="product__card">
                         @if ($product->discount)
                             <span class="product__card--badge">Giảm {{ $product->discount }}%</span>
                         @endif
@@ -150,7 +150,7 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
