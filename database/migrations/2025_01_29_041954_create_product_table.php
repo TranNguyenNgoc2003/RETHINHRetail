@@ -15,8 +15,10 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name_product');
             $table->double('price')->nullable();
+            $table->double('rating')->nullable();
             $table->integer('discount')->nullable();
             $table->integer('total_product')->nullable();
+            $table->string('description')->nullable();
             $table->string('category')->nullable();
             $table->string('Screen_size')->nullable();
             $table->string('Panel_material')->nullable();
