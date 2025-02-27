@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="header__main">
-                        <a href="index.html" class="header__main--logo">
+                        <a href="{{ route('home') }}" class="header__main--logo">
                             <img src="{{ asset('images/storetech-logo.png') }}">
                         </a>
 
@@ -31,7 +31,7 @@
                                 <input type="text" class="form-control search__input" placeholder="Tìm kiếm...">
                                 <i class="fas fa-search search__icon"></i>
                             </li>
-                            <li class="list__scroll-to-section item"><a class="item__link" href="#">Trang chủ</a></li>
+                            <li class="list__scroll-to-section item"><a class="item__link" href="{{ route('home') }}">Trang chủ</a></li>
                             <li class="list__submenu item">
                                 <a class="item__link" href="#">Danh mục</a>
                                 <ul class="item__dropdown">

@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name_product');
+            $table->string('options_CPU')->nullable();
+            $table->string('options_GPU')->nullable();
+            $table->string('options_RAM')->nullable();
+            $table->string('options_HARD')->nullable();
             $table->double('price')->nullable();
             $table->double('rating')->nullable();
             $table->integer('discount')->nullable();
