@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Promotion;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -19,6 +20,8 @@ class ProductController extends Controller
 
         $relatedProducts = Product::where('name_product', $product->name_product)->get();
 
-        return view('details', compact('product', 'relatedProducts'));
+        $promotion = Promotion::all();
+
+        return view('details', compact('product', 'relatedProducts', 'promotion'));
     }
 }

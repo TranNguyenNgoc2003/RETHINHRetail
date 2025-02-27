@@ -57,7 +57,7 @@
                     @endforeach
                 </div>
                 <div class=" priceDetailsInfo">
-                    <span class="priceDetailsInfo__priceCurrent">
+                    <span class="priceDetailsInfo__priceCurrent{{ $product->id == $item->id ? 'Active' : '' }}">
                         {{ number_format(round($product->price - ($product->price / 100) * $product->discount, -5), 0, ',', '.') }}
                         VND
                     </span>
