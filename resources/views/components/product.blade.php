@@ -1,6 +1,6 @@
 <div class="col-md-3 product__col">
     <div class="product__card">
-        <a href="#">
+        <a href="{{ route('product.detail', ['id' => $product->id]) }}">
             @if ($product->discount)
                 <span class="product__card--badge">Giảm {{ $product->discount }}%</span>
             @endif
@@ -9,7 +9,9 @@
                     src="{{ asset('images/Product/' . $product->images->first()->path_img) }}">
             </div>
             <div class="product__card--content">
-                <div class="product__card--content-title">{{ $product->name_product }}</div>
+                <div class="product__card--content-title">
+                    {{ $product->name_product . ' ' . $product->options_CPU . ' ' . $product->options_GPU . ' ' . $product->options_RAM . ' ' . $product->options_HARD }}
+                </div>
                 <div class="product__card--content-rating rating">
                     <div class="rating__star">
                         @for ($i = 1; $i <= 5; $i++)
@@ -18,10 +20,14 @@
                     </div>
                     <small class="rating__count">({{ $product->rating }}/5)</small>
                 </div>
-                <p class="product__card--content-description">{{ $product->description }}</p>
+                @if ($product->description)
+                    <p class="product__card--content-description">{{ $product->description }}</p>
+                @else
+                    <p class="product__card--content-NoneDescription"></p>
+                @endif
                 <div class="product__card--content-priceInfo priceInfo">
                     <span class="priceInfo__priceCurrent">
-                        {{ number_format(round($product->price - ($product->price / 100) * $product->discount, -3), 0, ',', '.') }}
+                        {{ number_format(round($product->price - ($product->price / 100) * $product->discount, -5), 0, ',', '.') }}
                         VND
                     </span>
                     @if ($product->price && $product->discount)

@@ -20,3 +20,4 @@ Route::prefix('social')->group(function () {
     Route::get('{provider}/callback', [SocialLoginCallback::class, 'handleProviderCallback']);
 });
 Route::get('/home', [ProductController::class, 'getProduct'])->name('home');
+Route::get('/product/{id}', [ProductController::class, 'details'])->name('product.detail');

@@ -59,7 +59,6 @@ class LoginAndRegisterController extends Controller implements HasMiddleware
             'email' => 'required|email',
             'password' => 'required'
         ]);
-// dd => die debug/// ddd => dump die debug ///
         if (Auth::attempt($credentials))
         {
             $request->session()->regenerate();
