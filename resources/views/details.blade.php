@@ -56,8 +56,19 @@
                         </a>
                     @endforeach
                 </div>
+                <div class="promotion">
+                    <h6 class="promotion__title"> ƯU ĐÃI THÊM </h6>
+                    <ul class="promotion__list">
+                        @foreach ($promotion as $itemDiscount)
+                            <li class="promotion__list--item">
+                                <i class="promotion__list--item-icon cil-check-alt"></i>
+                                <a href="#" class="promotion__list--item-link">{{ $itemDiscount->discount }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
                 <div class=" priceDetailsInfo">
-                    <span class="priceDetailsInfo__priceCurrent{{ $product->id == $item->id ? 'Active' : '' }}">
+                    <span class="priceDetailsInfo__priceCurrent{{ $product->discount == 0 ? 'Active' : '' }}">
                         {{ number_format(round($product->price - ($product->price / 100) * $product->discount, -5), 0, ',', '.') }}
                         VND
                     </span>

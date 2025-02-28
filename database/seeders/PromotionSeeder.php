@@ -14,7 +14,7 @@ class PromotionSeeder extends Seeder
     public function run(): void
     {
         DB::table('promotions')->insert([
-            ['discount' => 'Xem chính sách ưu đãi dành cho thành viên Smember'],
+            ['discount' => 'Xem chính sách ưu đãi dành cho thành viên Remember'],
             ['discount' => 'Hoàn tiền đến 2 triệu khi mở thẻ tín dụng HSBC'],
             ['discount' => 'Giảm đến 800.000đ khi thanh toán qua Techcombank'],
             ['discount' => 'Giảm đến 500.000đ khi thanh toán qua VNPAY'],
