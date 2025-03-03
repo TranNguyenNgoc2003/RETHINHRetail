@@ -368,7 +368,7 @@ class ProductSeeder extends Seeder
                 'discount' => 10,
                 'total_product' => 50,
                 'description' => NULL,
-                'category' => 'Headphones',
+                'category' => 'Phụ kiện',
                 'Screen_size' => NULL,
                 'Panel_material' => NULL,
                 'Display_tech' => NULL,

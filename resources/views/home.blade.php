@@ -123,4 +123,36 @@
             @endforeach
         </div>
     </div>
+    <div class="container product">
+        <h3 class="product__title">ĐIỆN THOẠI</h3>
+        <div class="row product__row">
+            @foreach ($products->where('category', 'Smartphone')->sortByDesc('rating')->unique('name_product')->take(8) as $product)
+                @include('components.product', ['products' => $products])
+            @endforeach
+        </div>
+    </div>
+    <div class="container product">
+        <h3 class="product__title">LAPTOP</h3>
+        <div class="row product__row">
+            @foreach ($products->where('category', 'Laptop')->sortByDesc('rating')->unique('name_product')->take(8) as $product)
+                @include('components.product', ['products' => $products])
+            @endforeach
+        </div>
+    </div>
+    <div class="container product">
+        <h3 class="product__title">MÁY TÍNH BẢNG</h3>
+        <div class="row product__row">
+            @foreach ($products->where('category', 'Tablet')->sortByDesc('rating')->unique('name_product')->take(8) as $product)
+                @include('components.product', ['products' => $products])
+            @endforeach
+        </div>
+    </div>
+    <div class="container product">
+        <h3 class="product__title">PHỤ KIỆN</h3>
+        <div class="row product__row">
+            @foreach ($products->where('category', 'Phụ kiện')->sortByDesc('rating')->unique('name_product')->take(8) as $product)
+                @include('components.product', ['products' => $products])
+            @endforeach
+        </div>
+    </div>
 @endsection
