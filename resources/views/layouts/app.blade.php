@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/js/app.js'])
 
 </head>
@@ -51,7 +52,7 @@
                             <li class="list__submenu item">
                                 <a class="item__link" href="#">Cửa hàng</a>
                                 <ul class="item__dropdown">
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Giỏ hàng</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="{{ route('cart') }}">Giỏ hàng</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Đơn hàng</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Voucher</a></li>                              
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Lịch sử mua hàng</a></li>                              

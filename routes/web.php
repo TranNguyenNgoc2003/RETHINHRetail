@@ -21,3 +21,5 @@ Route::prefix('social')->group(function () {
 });
 Route::get('/home', [ProductController::class, 'getProduct'])->name('home');
 Route::get('/product/{id}', [ProductController::class, 'details'])->name('product.detail');
+Route::post('/addToCart', [ProductController::class, 'addToCart'])->name('addToCart');
+Route::get('/cart', [ProductController::class, 'Cart'])->name('cart');

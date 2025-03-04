@@ -62,7 +62,9 @@
             </div>
 
             <!-- Product Details -->
-            <form class="detailProduct__info col-md-5" action="" method="POST">
+            <form class="detailProduct__info col-md-5" action="{{ route('addToCart') }}" method="POST">
+                @csrf
+                <input type="hidden" name="id" value="{{ $product->id }}">
                 <h2 class="detailProduct__info--title">{{ $product->name_product }}</h2>
                 <div class="detailProduct__info--rating rating">
                     <div class="rating__star">
@@ -114,34 +116,55 @@
                             VND</span>
                     @endif
                 </div>
+                @if ($product->total_product <= 0)
+                <div class="btn btn-outline-danger addCart">
+                    <div class="addCart__title">TẠM HẾT HÀNG</div>
+                    <div class="addCart__text">(Vui lòng liên hệ 1800-1234)</div>
+                </div>
+                @else
                 <button type="submit" class="btn btn-outline-danger addCart">
                     <i class="addCart__icon fas fa-cart-plus"></i>
-                    <div class="addCart__text">Thêm vào giỏ hàng</div>
+                    <div class="addCart__title">Thêm vào giỏ hàng</div>
                 </button>
+                @endif
+                
             </form>
         </div>
     </div>
+    @vite(['resources/js/product_detail.js'])
     <script>
-        function changeImage(event, src) {
-            document.getElementById('mainImage').src = src;
-            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const infoList = document.querySelector("#product-info");
-            const items = infoList.querySelectorAll(".introduce__list--item");
-            const button = document.querySelector("#toggle-info");
-
-            button.addEventListener("click", function() {
-                items.forEach((item, index) => {
-                    if (index >= 5) {
-                        item.style.display = item.style.display === "list-item" ? "none" :
-                            "list-item";
-                    }
-                });
-                button.textContent = button.textContent === "Hiển thị thêm" ? "Thu gọn" : "Hiển thị thêm";
+        @if (session('success'))
+            Swal.fire({
+                title: "Thành công!",
+                text: "Sản phẩm đã được thêm vào giỏ hàng.",
+                icon: "success",
+                showCancelButton: true,
+                confirmButtonText: "Xem giỏ hàng",
+                cancelButtonText: "Tiếp tục mua sắm"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ route('cart') }}";
+                }
             });
-        });
+
+            @php session()->forget('success'); @endphp
+        @endif
+
+        @if (session('error'))
+            Swal.fire({
+                title: "Lỗi!",
+                text: "{{ session('error') }}",
+                icon: "error",
+                showCancelButton: true,
+                confirmButtonText: "Đăng nhập ngay",
+                cancelButtonText: "Ở lại trang"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ route('login') }}";
+                }
+            });
+
+            @php session()->forget('error'); @endphp
+        @endif
     </script>
 @endsection

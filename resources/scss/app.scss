@@ -882,8 +882,11 @@ product detail
     width: 100%;
     padding: 10px 5px;
 
-    &__text {
+    &__title {
         font-weight: bold !important;
+    }
+    &__text {
+        font-size: 14px;
     }
 
     &__icon {
