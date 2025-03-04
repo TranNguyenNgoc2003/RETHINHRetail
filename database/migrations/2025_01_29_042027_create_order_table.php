@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('delivery');
             $table->boolean('pay');
             $table->dateTime('create_time');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('cart_id');
+            $table->foreign('cart_id')->references('id')->on('cart');
             $table->unsignedInteger('coupon_id');
             $table->foreign('coupon_id')->references('id')->on('coupon');
             $table->unsignedInteger('payment_id');
