@@ -87,7 +87,9 @@
                                 </div>
                                 <div class="options__item--gpu">{{ $item->option_gpu ?? '' }}</div>
                                 <div class="options__item--price">
-                                    {{ number_format($item->price * (1 - $product->discount / 100), 0, ',', '.') }} VND
+                                    {{-- {{ number_format($item->price * (1 - $product->discount / 100), 0, ',', '.') }} VND --}}
+                                    {{ number_format(round($item->price - ($item->price / 100) * $item->discount, -5), 0, ',', '.') }} VND
+                                    
                                 </div>
                             </a>
                         @endforeach
