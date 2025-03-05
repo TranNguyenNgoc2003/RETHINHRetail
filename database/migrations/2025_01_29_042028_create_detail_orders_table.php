@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('product_name');
+            $table->string('name_product');
             $table->integer('count');
             $table->string('total_price');
             $table->unsignedInteger('order_id');

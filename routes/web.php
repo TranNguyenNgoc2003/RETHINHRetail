@@ -19,7 +19,10 @@ Route::prefix('social')->group(function () {
     Route::get('{provider}', [SocialLogin::class, 'redirectToProvider'])->name('social.login');
     Route::get('{provider}/callback', [SocialLoginCallback::class, 'handleProviderCallback']);
 });
-Route::get('/home', [ProductController::class, 'getProduct'])->name('home');
-Route::get('/product/{id}', [ProductController::class, 'details'])->name('product.detail');
-Route::post('/addToCart', [ProductController::class, 'addToCart'])->name('addToCart');
-Route::get('/cart', [ProductController::class, 'Cart'])->name('cart');
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/home',  'getProduct')->name('home');
+    Route::get('/product/{id}',  'details')->name('product.detail');
+    Route::post('/addToCart',  'addToCart')->name('addToCart');
+    Route::get('/cart',  'Cart')->name('cart');
+});

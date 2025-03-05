@@ -10,7 +10,7 @@
             </div>
             <div class="product__card--content">
                 <div class="product__card--content-title">
-                    {{ $product->name_product . ' ' . $product->options_CPU . ' ' . $product->options_GPU . ' ' . $product->options_RAM . ' ' . $product->options_HARD }}
+                    {{ $product->name_product . ' ' . $product->option_cpu . ' ' . $product->option_gpu . ' ' . $product->option_ram . ' ' . $product->option_hard }}
                 </div>
                 <div class="product__card--content-rating rating">
                     <div class="rating__star">

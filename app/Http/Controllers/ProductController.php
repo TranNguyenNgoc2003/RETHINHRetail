@@ -47,8 +47,8 @@ class ProductController extends Controller
             $product->save();
         } else {
             Cart::create([
-                'product_name' => $product->name_product,
-                'product_price' => $product->price - ($product->price * $product->discount / 100),
+                'name_product' => $product->name_product,
+                'price_product' => $product->price - ($product->price * $product->discount / 100),
                 'count' => 1,
                 'user_id' => $user_id,
                 'product_id' => $product->id,
@@ -61,6 +61,9 @@ class ProductController extends Controller
     }
     public function Cart(): View
     {
-        return view('cart');
+        $user_id = Auth::id();
+        $cart = Cart::where('user_id', $user_id)
+            ->first();
+        return view('cart', compact('cart'));
     }
 }

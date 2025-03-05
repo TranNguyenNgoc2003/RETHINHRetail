@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('cart', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('product_name');
-            $table->double('product_price');
+            $table->string('name_product');
+            $table->double('price_product');
             $table->integer('count');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
