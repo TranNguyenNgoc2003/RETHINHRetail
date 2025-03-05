@@ -59,11 +59,48 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');
     }
-    public function Cart(): View
+    public function cart(): View
     {
         $user_id = Auth::id();
-        $cart = Cart::where('user_id', $user_id)
+        $cart = Cart::where('user_id', $user_id)->get();
+
+        $subtotal = $cart->sum(function ($item) {
+            return $item->price_product * $item->count;
+        });
+
+        // $shipping_fee = ($subtotal > 0) ? 10000 : 0; 
+        // $discount = $subtotal * 0.1;
+        $shipping_fee =  0; 
+        $discount = 0;
+
+        $total = $subtotal + $shipping_fee - $discount;
+
+        return view('cart', compact('cart', 'subtotal', 'shipping_fee', 'discount', 'total'));
+    }
+    public function updateCart(Request $request)
+    {
+        $cartItem = Cart::where('user_id', Auth::id())
+            ->where('id', $request->cart_id)
             ->first();
-        return view('cart', compact('cart'));
+        if ($cartItem) {
+            $product = Product::find($cartItem->product_id);
+
+            if ($request->action == 'remove' || $request->action == 'decrease' && $cartItem->count == 1) {
+                $product->total_product += $cartItem->count;
+                $product->save();
+                $cartItem->delete();
+                return redirect()->route('cart');
+            } elseif ($request->action == 'increase' && $product->total_product > 0) {
+                $cartItem->count += 1;
+                $product->total_product -= 1;
+            } elseif ($request->action == 'decrease' && $cartItem->count > 1) {
+                $cartItem->count -= 1;
+                $product->total_product += 1;
+            }
+            $cartItem->save();
+            $product->save();
+        }
+
+        return redirect()->route('cart');
     }
 }

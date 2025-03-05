@@ -24,5 +24,6 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/home',  'getProduct')->name('home');
     Route::get('/product/{id}',  'details')->name('product.detail');
     Route::post('/addToCart',  'addToCart')->name('addToCart');
-    Route::get('/cart',  'Cart')->name('cart');
+    Route::get('/cart',  'cart')->name('cart');
+    Route::post('/cart/update', 'updateCart')->name('cart.update');
 });

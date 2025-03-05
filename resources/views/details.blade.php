@@ -83,7 +83,8 @@
                                     <i class="cil-check-alt"></i>
                                 @endif
                                 <div class="options__item--cpu">{{ $item->option_cpu ?? '' }}</div>
-                                <div class="options__item--memory">{{ $item->option_ram . ' - ' . $item->option_hard }}</div>
+                                <div class="options__item--memory">{{ $item->option_ram . ' - ' . $item->option_hard }}
+                                </div>
                                 <div class="options__item--gpu">{{ $item->option_gpu ?? '' }}</div>
                                 <div class="options__item--price">
                                     {{ number_format($item->price * (1 - $product->discount / 100), 0, ',', '.') }} VND
@@ -117,22 +118,42 @@
                     @endif
                 </div>
                 @if ($product->total_product <= 0)
-                <div class="btn btn-outline-danger addCart">
-                    <div class="addCart__title">TẠM HẾT HÀNG</div>
-                    <div class="addCart__text">(Vui lòng liên hệ 1800-1234)</div>
-                </div>
+                    <div class="btn btn-outline-danger addCart">
+                        <div class="addCart__title">TẠM HẾT HÀNG</div>
+                        <div class="addCart__text">(Vui lòng liên hệ 1800-1234)</div>
+                    </div>
                 @else
-                <button type="submit" class="btn btn-outline-danger addCart">
-                    <i class="addCart__icon fas fa-cart-plus"></i>
-                    <div class="addCart__title">Thêm vào giỏ hàng</div>
-                </button>
+                    <button type="submit" class="btn btn-outline-danger addCart">
+                        <i class="addCart__icon fas fa-cart-plus"></i>
+                        <div class="addCart__title">Thêm vào giỏ hàng</div>
+                    </button>
                 @endif
-                
+
             </form>
         </div>
     </div>
-    @vite(['resources/js/product_detail.js'])
     <script>
+        function changeImage(event, src) {
+            document.getElementById('mainImage').src = src;
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const infoList = document.querySelector("#product-info");
+            const items = infoList.querySelectorAll(".introduce__list--item");
+            const button = document.querySelector("#toggle-info");
+
+            button.addEventListener("click", function() {
+                items.forEach((item, index) => {
+                    if (index >= 5) {
+                        item.style.display = item.style.display === "list-item" ? "none" :
+                            "list-item";
+                    }
+                });
+                button.textContent = button.textContent === "Hiển thị thêm" ? "Thu gọn" : "Hiển thị thêm";
+            });
+        });
         @if (session('success'))
             Swal.fire({
                 title: "Thành công!",
