@@ -13,19 +13,14 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('full_name');
-            $table->string('address');
-            $table->string('phone');
-            $table->double('price_total');
-            $table->double('price_ship');
+            $table->double('total_price');
+            $table->double('shipping_fee');
             $table->string('status');
-            $table->string('delivery');
             $table->boolean('pay');
-            $table->dateTime('create_time');
-            $table->unsignedInteger('cart_id');
-            $table->foreign('cart_id')->references('id')->on('cart');
             $table->unsignedInteger('coupon_id');
             $table->foreign('coupon_id')->references('id')->on('coupon');
+            $table->unsignedInteger('deliveries_id');
+            $table->foreign('deliveries_id')->references('id')->on('deliveries');
             $table->unsignedInteger('payment_id');
             $table->foreign('payment_id')->references('id')->on('payment');
             $table->timestamps();
