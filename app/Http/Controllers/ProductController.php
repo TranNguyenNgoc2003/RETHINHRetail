@@ -47,8 +47,8 @@ class ProductController extends Controller
             $product->save();
         } else {
             Cart::create([
-                'name_product' => $product->name_product,
-                'price_product' => $product->price - ($product->price * $product->discount / 100),
+                'product_name' => $product->name_product,
+                'product_price' => $product->price - ($product->price * $product->discount / 100),
                 'count' => 1,
                 'user_id' => $user_id,
                 'product_id' => $product->id,
