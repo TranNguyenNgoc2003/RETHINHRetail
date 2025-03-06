@@ -90,30 +90,6 @@
                                                         </div>
                                                     </label>
                                                 </div>
-
-                                                {{-- <div class="optionPayment__method--item method">
-                                                    <input type="radio" name="pay-method" id="pay-methodoption2"
-                                                        class="method__radio">
-                                                    <div class="method__content">
-                                                        <div class="method__content--image">
-                                                            <img src="{{ asset('images/Logo-VNPAY-QR.png') }}"
-                                                                alt="">
-                                                        </div>
-                                                        <p>Ví điện tử VNPAY</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="optionPayment__method--item method">
-                                                    <input type="radio" name="pay-method" id="pay-methodoption3"
-                                                        class="method__radio">
-                                                    <div class="method__content">
-                                                        <div class="method__content--image">
-                                                            <img src="{{ asset('images/cash-on-delivery.png') }}"
-                                                                alt="">
-                                                        </div>
-                                                        <p>Thanh toán khi nhận hàng</p>
-                                                    </div>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
