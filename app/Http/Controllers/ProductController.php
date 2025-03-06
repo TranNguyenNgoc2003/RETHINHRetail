@@ -16,6 +16,7 @@ class ProductController extends Controller
         $products = Product::all();
         return view('home', compact('products'));
     }
+    
     public function details($id)
     {
         $product = Product::findOrFail($id);
@@ -59,6 +60,7 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');
     }
+
     public function cart(): View
     {
         $user_id = Auth::id();
@@ -70,13 +72,14 @@ class ProductController extends Controller
 
         // $shipping_fee = ($subtotal > 0) ? 10000 : 0; 
         // $discount = $subtotal * 0.1;
-        $shipping_fee =  0; 
+        $shipping_fee =  0;
         $discount = 0;
 
         $total = $subtotal + $shipping_fee - $discount;
 
         return view('cart', compact('cart', 'subtotal', 'shipping_fee', 'discount', 'total'));
     }
+    
     public function updateCart(Request $request)
     {
         $cartItem = Cart::where('user_id', Auth::id())
@@ -102,5 +105,24 @@ class ProductController extends Controller
         }
 
         return redirect()->route('cart');
+    }
+
+    public function checkout(): View
+    {
+        $user_id = Auth::id();
+        $checkout = Cart::where('user_id', $user_id)->get();
+
+        $subtotal = $checkout->sum(function ($item) {
+            return $item->price_product * $item->count;
+        });
+        
+        // $shipping_fee = ($subtotal > 0) ? 10000 : 0; 
+        // $discount = $subtotal * 0.1;
+        $shipping_fee =  0;
+        $discount = 0;
+
+        $total = $subtotal + $shipping_fee - $discount;
+
+        return view('checkout', compact('checkout', 'subtotal', 'shipping_fee', 'discount', 'total'));
     }
 }

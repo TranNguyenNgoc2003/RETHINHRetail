@@ -74,16 +74,24 @@
         <div class="cart__summary col-lg-4">
             <div class="cart__summary--item summary">
                 <h5 class="summary__title">Tóm tắt đơn hàng</h5>
-                <div class="summary__title--item"><span>Tổng cộng</span><span>{{ number_format($subtotal, 0, ',', '.') }}
-                        VND</span></div>
-                <div class="summary__title--item"><span>Vận
-                        chuyển</span><span>{{ number_format($shipping_fee, 0, ',', '.') }} VND</span></div>
-                <div class="summary__title--item"><span>Giảm giá</span><span>{{ number_format($discount, 0, ',', '.') }}
-                        VND</span></div>
+                <div class="summary__title--item">
+                    <span>Tổng cộng:</span>
+                    <span>{{ number_format($subtotal, 0, ',', '.') }} VND</span>
+                </div>
+                <div class="summary__title--item">
+                    <span>Vận chuyển:</span>
+                    <span>{{ number_format($shipping_fee, 0, ',', '.') }} VND</span>
+                </div>
+                <div class="summary__title--item">
+                    <span>Giảm giá:</span>
+                    <span>{{ number_format($discount, 0, ',', '.') }} VND</span>
+                </div>
                 <hr>
-                <div class="summary__title--item"><strong>Tổng
-                        cộng</strong><strong>{{ number_format($total, 0, ',', '.') }} VND</strong></div>
-                <button class="btn btn-primary w-100">Tiến hành thanh toán</button>
+                <div class="summary__title--item">
+                    <strong>Tổng cộng:</strong>
+                    <strong>{{ number_format($total, 0, ',', '.') }} VND</strong>
+                </div>
+                <a href="{{ route('checkout') }}" class="btn btn-primary w-100">Tiến hành thanh toán</a>
             </div>
 
             <div class="cart__summary--item summary">

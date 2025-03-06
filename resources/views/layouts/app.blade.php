@@ -32,31 +32,48 @@
                                 <input type="text" class="form-control search__input" placeholder="Tìm kiếm...">
                                 <i class="fas fa-search search__icon"></i>
                             </li>
-                            <li class="list__scroll-to-section item"><a class="item__link" href="{{ route('home') }}">Trang chủ</a></li>
+                            <li class="list__scroll-to-section item"><a class="item__link"
+                                    href="{{ route('home') }}">Trang chủ</a></li>
                             <li class="list__submenu item">
                                 <a class="item__link" href="#">Danh mục</a>
                                 <ul class="item__dropdown">
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Điện thoại</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Laptop</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Âm thanh</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Đồng hồ, Camera</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Đồ gia dụng</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Phụ kiện</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">PC, Màn hình, Máy in</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Tivi</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Khuyến mãi</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Tin công nghệ</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Điện thoại</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Laptop</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Âm thanh</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Đồng hồ, Camera</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Đồ gia dụng</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Phụ kiện</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">PC, Màn hình, Máy in</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Tivi</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Khuyến mãi</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Tin công nghệ</a></li>
                                 </ul>
                             </li>
-                            <li class="list__scroll-to-section item"><a class="item__link" href="#">Liên hệ</a></li>
+                            <li class="list__scroll-to-section item"><a class="item__link" href="#">Liên hệ</a>
+                            </li>
                             <li class="list__submenu item">
                                 <a class="item__link" href="#">Cửa hàng</a>
                                 <ul class="item__dropdown">
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="{{ route('cart') }}">Giỏ hàng</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Đơn hàng</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Voucher</a></li>                              
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Lịch sử mua hàng</a></li>                              
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Đánh giá</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="{{ route('cart') }}">Giỏ hàng</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Đơn hàng</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Voucher</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Lịch sử mua hàng</a></li>
+                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                            href="#">Đánh giá</a></li>
                                 </ul>
                             </li>
                             <li class="list__submenu item">
@@ -66,17 +83,22 @@
                                 @else
                                     <a class="item__link" href="#">{{ Auth::user()->fullname }}</a>
                                     <ul class="item__dropdown">
-                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Thông tin cá nhân</a></li>
-                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Thông tin thanh toán</a></li>
-                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="#">Địa chỉ nhận hàng</a></li>
-                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">Đăng xuất</a>
+                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                                href="#">Thông tin cá nhân</a></li>
+                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                                href="#">Thông tin thanh toán</a></li>
+                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                                href="#">Địa chỉ nhận hàng</a></li>
+                                        <li class="item__dropdown--title"><a class="item__dropdown--title-link"
+                                                href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">Đăng
+                                                xuất</a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                            @csrf
+                                                @csrf
                                             </form>
                                         </li>
-                                        
+
                                     </ul>
 
                                 @endguest
@@ -99,7 +121,8 @@
                             <img src="{{ asset('images/storetech-logo.png') }}">
                         </div>
                         <ul class="column__item--contact">
-                            <li><a href="#"><i class="fas fa-map-marker-alt"></i>456 Lê Duẩn, Quận Hải Châu, TP Đà Nẵng</a></li>
+                            <li><a href="#"><i class="fas fa-map-marker-alt"></i>456 Lê Duẩn, Quận Hải Châu, TP
+                                    Đà Nẵng</a></li>
                             <li><a href="#"><i class="fas fa-envelope"></i>support@rethinkretail.com</a></li>
                             <li><a href="#"><i class="fas fa-phone"></i>1800-1234</a></li>
                         </ul>
