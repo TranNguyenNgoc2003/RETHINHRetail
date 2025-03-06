@@ -1279,7 +1279,10 @@ checkout
                 font-size: 14px;
             }
         }
-
+        &--price, &--text, &--quantity {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
         &--price {
             width: 60%;
             font-size: 16px;
@@ -1288,7 +1291,6 @@ checkout
         &--text {
             width: 25%;
             font-size: 16px;
-            margin-bottom: 10px;
         }
 
         &--quantity {
