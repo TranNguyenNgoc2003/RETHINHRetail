@@ -22,13 +22,19 @@
                                         <div class="shipping">
                                             <div class="shipping__info">
                                                 <h5 class="shipping__info--title">Địa chỉ giao hàng</h5>
-                                                <span class="shipping__info--name">Bradley McMillian</span>
-                                                <span class="shipping__info--address">109
-                                                    Clarksburg Park Road Show Low, AZ 85901</span>
-                                                <span class="shipping__info--phone">Mo.
-                                                    012-345-6789</span>
+                                                @if ($selectedAddress)
+                                                    <span
+                                                        class="shipping__info--name">{{ $selectedAddress->fullname }}</span>
+                                                    <span
+                                                        class="shipping__info--address">{{ $selectedAddress->address }}</span>
+                                                    <span class="shipping__info--phone">{{ $selectedAddress->phone }}</span>
+                                                @else
+                                                <span
+                                                class="shipping__info--desciption">Hãy chọn địa chỉ giao hàng</span>
+                                                @endif
+
                                             </div>
-                                            <a href="{{ route('shipping') }}" class="shipping__change">
+                                            <a href="{{ route('shipping.index') }}" class="shipping__change">
                                                 <i class="fas fa-edit"></i>
                                                 <span>Thay đổi địa chỉ giao hàng</span>
                                             </a>
@@ -71,9 +77,9 @@
                                                         <div class="method__label--content">
                                                             <div class="method__label--content-image">
                                                                 <img src="{{ asset('images/Logo-VNPAY-QR.png') }}"
-                                                                alt="">
-                                                        </div>
-                                                        <p>Ví điện tử VNPAY</p>
+                                                                    alt="">
+                                                            </div>
+                                                            <p>Ví điện tử VNPAY</p>
                                                         </div>
                                                     </label>
                                                 </div>
@@ -84,9 +90,9 @@
                                                         <div class="method__label--content">
                                                             <div class="method__label--content-image">
                                                                 <img src="{{ asset('images/cash-on-delivery.png') }}"
-                                                                alt="">
-                                                        </div>
-                                                        <p>Thanh toán khi nhận hàng</p>
+                                                                    alt="">
+                                                            </div>
+                                                            <p>Thanh toán khi nhận hàng</p>
                                                         </div>
                                                     </label>
                                                 </div>

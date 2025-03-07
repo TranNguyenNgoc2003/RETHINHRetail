@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Delivery;
 use App\Models\Product;
 use App\Models\Promotion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -16,7 +18,7 @@ class ProductController extends Controller
         $products = Product::all();
         return view('home', compact('products'));
     }
-    
+
     public function details($id)
     {
         $product = Product::findOrFail($id);
@@ -79,7 +81,7 @@ class ProductController extends Controller
 
         return view('cart', compact('cart', 'subtotal', 'shipping_fee', 'discount', 'total'));
     }
-    
+
     public function updateCart(Request $request)
     {
         $cartItem = Cart::where('user_id', Auth::id())
@@ -111,11 +113,14 @@ class ProductController extends Controller
     {
         $user_id = Auth::id();
         $checkout = Cart::where('user_id', $user_id)->get();
+        $selectedAddress = Delivery::where('user_id', $user_id)
+            ->where('is_active', true)
+            ->first();
 
         $subtotal = $checkout->sum(function ($item) {
             return $item->price_product * $item->count;
         });
-        
+
         // $shipping_fee = ($subtotal > 0) ? 10000 : 0; 
         // $discount = $subtotal * 0.1;
         $shipping_fee =  0;
@@ -123,6 +128,6 @@ class ProductController extends Controller
 
         $total = $subtotal + $shipping_fee - $discount;
 
-        return view('checkout', compact('checkout', 'subtotal', 'shipping_fee', 'discount', 'total'));
+        return view('checkout', compact('checkout', 'subtotal', 'shipping_fee', 'discount', 'total', 'selectedAddress'));
     }
 }

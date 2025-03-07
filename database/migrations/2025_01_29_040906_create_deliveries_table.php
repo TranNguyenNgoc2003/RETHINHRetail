@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }
