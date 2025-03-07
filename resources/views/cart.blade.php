@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="cart__summary--item summary">
-                    <h5 class="summary__title">Mã khuyến mại</h5>
+                    <h5 class="summary__title">Mã khuyến mãi</h5>
                     <div class="summary__promo">
                         <input type="text" class="form-control summary__promo--input" placeholder="Nhập mã khuyến mãi">
                         <button class="btn btn-outline-secondary summary__promo--button" type="button">Áp dụng</button>
