@@ -49,8 +49,5 @@
                     hàng mới</a>
             </div>
         @endif
-
-
-
     </div>
 @endsection
