@@ -83,4 +83,18 @@ class ShippingController extends Controller
 
         return redirect()->route('shipping.index')->with('success', 'Đã cập nhật địa chỉ.');
     }
+    public function delete($id)
+    {
+        $address = Delivery::where('id', $id)->where('user_id', Auth::id())->first();
+        if (Auth::check() == false) {
+            return redirect()->route('home');
+        }
+        if (!$address) {
+            return redirect()->route('shipping.index')->with('error', 'Không tìm thấy địa chỉ.');
+        } elseif (Auth::user()->id == $address->user_id) {
+            $address->delete();
+            return redirect()->route('shipping.index');
+        }
+        return redirect()->route('home');
+    }
 }

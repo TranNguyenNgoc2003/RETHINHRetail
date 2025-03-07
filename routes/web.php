@@ -38,5 +38,5 @@ Route::controller(ShippingController::class)->group(function () {
     Route::post('/shipping/select', 'selectAddress')->name('shipping.select');
     Route::get('/shipping/{id}/edit', 'edit')->name('shipping.edit');
     Route::put('/shipping/{id}', 'update')->name('shipping.update');
-    Route::delete('/shipping/{id}', 'destroy')->name('shipping.destroy');
+    Route::get('/shipping/{id}/delete', 'delete')->name('shipping.delete');
 });

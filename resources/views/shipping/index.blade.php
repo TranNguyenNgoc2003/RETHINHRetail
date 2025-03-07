@@ -26,6 +26,9 @@
                                     <a href="{{ route('shipping.edit', $delivery->id) }}" class="address__icon--edit">
                                         <i class="cil-pencil"></i>
                                     </a>
+                                    <a href="{{ route('shipping.delete', $delivery->id) }}" class="address__icon--delete">
+                                        <i class="cil-trash"></i>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach

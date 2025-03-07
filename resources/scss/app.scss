@@ -1148,6 +1148,7 @@ checkout
             color: #6c757d;
             display: block;
         }
+
         &--desciption {
             color: #6c757d;
             display: block;
@@ -1416,20 +1417,24 @@ shipping
             margin-top: 23px;
             text-decoration: none;
             color: black;
+
             &:hover {
                 color: #198754;
             }
         }
-        &--form{
-            &-delete {
-                transition: 0.4s;
-                margin-left: 20px;
-                font-size: 21px;
-                background-color: white;
-                &:hover {
-                    color: #dc3545;
-                }
+
+        &--delete {
+            font-size: 20px;
+            transition: 0.4s;
+            margin-top: 23px;
+            text-decoration: none;
+            color: black;
+            margin-left: 20px;
+
+            &:hover {
+                color: #dc3545;
             }
+
         }
     }
 }
