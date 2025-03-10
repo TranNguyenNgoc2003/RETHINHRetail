@@ -24,7 +24,7 @@
                 <div class="col-12">
                     <nav class="header__main">
                         <a href="{{ route('home') }}" class="header__main--logo">
-                            <img src="{{ asset('images/storetech-logo.png') }}">
+                            <img src="{{ asset('images/Rethink-Logo.png') }}">
                         </a>
 
                         <ul class="header__main--nav list">
@@ -59,7 +59,7 @@
                                             href="#">Tin công nghệ</a></li>
                                 </ul>
                             </li>
-                            <li class="list__scroll-to-section item"><a class="item__link" href="#">Liên hệ</a>
+                            <li class="list__scroll-to-section item"><a class="item__link" href="{{ route('about') }}">Liên hệ</a>
                             </li>
                             <li class="list__submenu item">
                                 <a class="item__link" href="#">Cửa hàng</a>
@@ -116,7 +116,7 @@
                 <div class="col-lg-3 column">
                     <div class="first-item column__item">
                         <div class="column__item--logo">
-                            <img src="{{ asset('images/storetech-logo.png') }}">
+                            <img src="{{ asset('images/Rethink-Logo.png') }}">
                         </div>
                         <ul class="column__item--contact">
                             <li><a href="#"><i class="fas fa-map-marker-alt"></i>456 Lê Duẩn, Quận Hải Châu, TP

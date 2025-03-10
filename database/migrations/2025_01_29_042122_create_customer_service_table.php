@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('customer_service', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('service_name');
-            $table->boolean('service_type');
+            $table->string('service_name')->nullable();
+            $table->boolean('service_type')->default(0);
             $table->string('username');
             $table->string('phone');
-            $table->string('email');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
-            $table->string('note');
-            $table->unsignedInteger('spworker_id');
+            $table->string('email')->nullable();
+            $table->dateTime('start_time')->nullable();
+            $table->dateTime('end_time')->nullable();
+            $table->string('note')->nullable();
+            $table->unsignedInteger('spworker_id')->default(2);
             $table->foreign('spworker_id')->references('id')->on('support_worker');
             $table->timestamps();
         });

@@ -1635,6 +1635,168 @@ coupons
 footer
 --------------------------------------------- 
 */
+.about {
+    margin-top: 6%;
+    padding: 40px 20px;
+
+    &__header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    &__title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    &__description {
+        font-size: 1.2rem;
+        color: #555;
+    }
+
+    &__section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 50px;
+        gap: 20px;
+
+        &--reverse {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &__content {
+        width: 55%;
+    }
+
+    &__subtitle {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    &__text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    &__image {
+        width: 40%;
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+
+    &__features {
+        text-align: center;
+        margin-top: 50px;
+
+        &-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        &-list {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+    }
+
+    &__feature {
+        flex: 1;
+        max-width: 250px;
+        text-align: center;
+
+        &-icon {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        &-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        &-text {
+            font-size: 1rem;
+            color: #666;
+        }
+    }
+
+    &__map {
+        margin-top: 50px;
+
+        &-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+    }
+
+    &__support {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__form {
+        width: 45%;
+        text-align: center;
+        margin-top: 50px;
+
+        &-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        &-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+
+            label {
+                display: block;
+                font-weight: bold;
+                margin-top: 10px;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            textarea {
+                height: 100px;
+            }
+        }
+
+        &-button {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+
+}
+
+/* 
+---------------------------------------------
+footer
+--------------------------------------------- 
+*/
 .footer {
     // margin-top: 60px;
     padding: 60px 0px 30px 0px;
