@@ -1488,6 +1488,144 @@ shipping
 
 /* 
 ---------------------------------------------
+coupons
+--------------------------------------------- 
+*/
+.voucher-body {
+    background-color: #dadde6;
+}
+
+.coupons {
+    padding-top: 9%;
+    margin-bottom: 10%;
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    &__title {
+        text-transform: uppercase;
+        font-weight: 900;
+        border-left: 10px solid #fec500;
+        padding-left: 10px;
+        margin-bottom: 30px
+    }
+
+    &__item {
+        width: 90%;
+        margin: 0 auto;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.ticket {
+    width: 48%;
+    background-color: #fff;
+    color: #989898;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+
+    &__count {
+        width: 25%;
+        position: relative;
+        text-align: center;
+        border-right: 2px dashed #dadde6;
+
+        &:before,
+        &:after {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-color: #DADDE6;
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            z-index: 1;
+            border-radius: 50%
+        }
+
+        &:after {
+            top: auto;
+            bottom: -15px
+        }
+
+        span {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            color: #2b2b2b;
+            font-weight: 600;
+            font-size: 40px;
+        }
+    }
+
+    &__info {
+        width: 75%;
+        font-size: 85%;
+        padding: 10px 10px 30px 50px;
+
+        &--shop,
+        &--title,
+        &--description,
+        &--code,
+        &--link {
+            // display: table-cell;
+        }
+
+        &--title {
+            color: #3C3C3C;
+            font-size: 22px
+        }
+
+        &--link {
+            display: block;
+            text-decoration: none;
+            padding: 0px 10px;
+            background-color: #F8504C;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 2px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px
+        }
+
+        span {
+            display: block;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .coupons__row {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* 
+---------------------------------------------
 footer
 --------------------------------------------- 
 */

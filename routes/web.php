@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginAndRegisterController;
 use App\Http\Controllers\Auth\SocialLogin;
 use App\Http\Controllers\Auth\SocialLoginCallback;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShippingController;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,6 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/cart',  'cart')->name('cart');
     Route::post('/cart/update', 'updateCart')->name('cart.update');
     Route::get('/checkout',  'checkout')->name('checkout');
-    
 });
 
 Route::controller(ShippingController::class)->group(function () {
@@ -39,4 +39,8 @@ Route::controller(ShippingController::class)->group(function () {
     Route::get('/shipping/{id}/edit', 'edit')->name('shipping.edit');
     Route::put('/shipping/{id}', 'update')->name('shipping.update');
     Route::get('/shipping/{id}/delete', 'delete')->name('shipping.delete');
+});
+
+Route::controller(CouponController::class)->group(function () {
+    Route::get('/coupon','coupon')->name('coupon');
 });

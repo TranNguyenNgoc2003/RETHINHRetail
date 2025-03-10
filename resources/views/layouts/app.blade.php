@@ -67,9 +67,7 @@
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
                                             href="{{ route('cart') }}">Giỏ hàng</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">Đơn hàng</a></li>
-                                    <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">Voucher</a></li>
+                                            href="{{ route('coupon') }}">Voucher</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
                                             href="#">Lịch sử mua hàng</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
