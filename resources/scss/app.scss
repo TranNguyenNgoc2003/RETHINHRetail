@@ -474,6 +474,7 @@ products list
 .product {
     margin-top: 20px;
     margin-bottom: 20px;
+    padding-bottom: 60px;
 
     &__title {
         color: #4d4d4d;
@@ -604,6 +605,8 @@ product detail
 --------------------------------------------- 
 */
 .detailProduct {
+    padding-bottom: 60px;
+
     &__intro {
         &--image {
             margin-bottom: 16px;
@@ -905,6 +908,7 @@ cart
 .cart {
     margin-top: 9%;
     margin-bottom: 10%;
+    padding-bottom: 60px;
     display: flex;
 
     &__content {
@@ -1010,6 +1014,7 @@ checkout
 .shopping {
     margin-top: 9%;
     margin-bottom: 10%;
+    padding-bottom: 60px;
 }
 
 .card {
@@ -1340,6 +1345,7 @@ shipping
 .logistica {
     margin-top: 9%;
     margin-bottom: 10%;
+    padding-bottom: 60px;
 
     &__title {
         text-align: center;
@@ -1497,7 +1503,7 @@ coupons
 
 .coupons {
     padding-top: 9%;
-    margin-bottom: 10%;
+    padding-bottom: 7%;
 
     &__list {
         display: flex;
@@ -1630,7 +1636,7 @@ footer
 --------------------------------------------- 
 */
 .footer {
-    margin-top: 60px;
+    // margin-top: 60px;
     padding: 60px 0px 30px 0px;
     background-color: #2a2a2a;
 }
