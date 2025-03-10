@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\Models\Delivery;
 use App\Models\Product;
 use App\Models\Promotion;
@@ -60,6 +61,8 @@ class ProductController extends Controller
             $product->save();
         }
 
+        Session::forget('coupon');
+
         return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');
     }
 
@@ -68,14 +71,17 @@ class ProductController extends Controller
         $user_id = Auth::id();
         $cart = Cart::where('user_id', $user_id)->get();
 
+        if ($cart->isEmpty()) {
+            Session::forget('coupon');
+        }
+
         $subtotal = $cart->sum(function ($item) {
             return $item->price_product * $item->count;
         });
 
-        // $shipping_fee = ($subtotal > 0) ? 10000 : 0; 
-        // $discount = $subtotal * 0.1;
-        $shipping_fee =  0;
-        $discount = 0;
+        $shipping_fee = 0;
+        $coupon = Session::get('coupon', null);
+        $discount = $coupon['discount'] ?? 0;
 
         $total = $subtotal + $shipping_fee - $discount;
 
@@ -94,6 +100,7 @@ class ProductController extends Controller
                 $product->total_product += $cartItem->count;
                 $product->save();
                 $cartItem->delete();
+                Session::forget('coupon');
                 return redirect()->route('cart');
             } elseif ($request->action == 'increase' && $product->total_product > 0) {
                 $cartItem->count += 1;
@@ -104,9 +111,39 @@ class ProductController extends Controller
             }
             $cartItem->save();
             $product->save();
+
+            Session::forget('coupon');
         }
 
         return redirect()->route('cart');
+    }
+
+    public function applyCoupon(Request $request)
+    {
+        $user_id = Auth::id();
+        $cart = Cart::where('user_id', $user_id)->get();
+        $subtotal = $cart->sum(fn($item) => $item->price_product * $item->count);
+
+        $coupon = Coupon::where('code', $request->coupon_code)
+            ->where('count', '>', 0)
+            ->where('start_date', '<=', now())
+            ->where('end_date', '>=', now())
+            ->first();
+
+        if (!$coupon) {
+            return redirect()->route('cart')->with('error', 'Mã khuyến mãi không hợp lệ hoặc đã hết hạn.');
+        }
+
+        $discount = ($coupon->promotion / 100) * $subtotal;
+        $shipping_fee = 0;
+        $total = $subtotal + $shipping_fee - $discount;
+
+        Session::put('coupon', [
+            'code' => $coupon->code,
+            'discount' => $discount,
+        ]);
+
+        return redirect()->route('cart')->with('success', 'Áp dụng mã giảm giá thành công!');
     }
 
     public function checkout(): View
@@ -121,10 +158,9 @@ class ProductController extends Controller
             return $item->price_product * $item->count;
         });
 
-        // $shipping_fee = ($subtotal > 0) ? 10000 : 0; 
-        // $discount = $subtotal * 0.1;
-        $shipping_fee =  0;
-        $discount = 0;
+        $shipping_fee = 0;
+        $coupon = Session::get('coupon', null);
+        $discount = $coupon['discount'] ?? 0;
 
         $total = $subtotal + $shipping_fee - $discount;
 

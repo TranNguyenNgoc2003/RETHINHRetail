@@ -28,6 +28,7 @@ Route::controller(ProductController::class)->group(function () {
     Route::post('/addToCart',  'addToCart')->name('addToCart');
     Route::get('/cart',  'cart')->name('cart');
     Route::post('/cart/update', 'updateCart')->name('cart.update');
+    Route::post('/cart/coupon', 'applyCoupon')->name('cart.coupon');
     Route::get('/checkout',  'checkout')->name('checkout');
 });
 

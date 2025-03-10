@@ -75,16 +75,21 @@
                         <strong>Tổng cộng:</strong>
                         <strong>{{ number_format($total, 0, ',', '.') }} VND</strong>
                     </div>
+
                     <a href="{{ route('checkout') }}" class="btn btn-primary w-100">Tiến hành thanh toán</a>
                 </div>
 
-                <div class="cart__summary--item summary">
-                    <h5 class="summary__title">Mã khuyến mãi</h5>
-                    <div class="summary__promo">
-                        <input type="text" class="form-control summary__promo--input" placeholder="Nhập mã khuyến mãi">
-                        <button class="btn btn-outline-secondary summary__promo--button" type="button">Áp dụng</button>
+                <form action="{{ route('cart.coupon') }}" method="POST">
+                    @csrf
+                    <div class="cart__summary--item summary">
+                        <h5 class="summary__title">Mã khuyến mãi</h5>
+                        <div class="summary__promo">
+                            <input type="text" name="coupon_code" class="form-control summary__promo--input"
+                                placeholder="Nhập mã khuyến mãi" value="{{ $coupon['code'] ?? '' }}">
+                            <button class="btn btn-outline-secondary summary__promo--button" type="submit">Áp dụng</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         @elseif (!Auth::check())
             <div class="cart__content--title">
@@ -101,7 +106,5 @@
                 </a>
             </div>
         @endif
-
-
     </div>
 @endsection
