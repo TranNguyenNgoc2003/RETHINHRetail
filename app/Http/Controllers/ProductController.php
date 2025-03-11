@@ -13,7 +13,7 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function getProduct()
+    public function home()
     {
         $products = Product::all();
         return view('home', compact('products'));

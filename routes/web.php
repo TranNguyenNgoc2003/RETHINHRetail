@@ -3,8 +3,10 @@
 use App\Http\Controllers\Auth\LoginAndRegisterController;
 use App\Http\Controllers\Auth\SocialLogin;
 use App\Http\Controllers\Auth\SocialLoginCallback;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CustomerServiceController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShippingController;
 use Illuminate\Support\Facades\Route;
@@ -14,7 +16,6 @@ Route::controller(LoginAndRegisterController::class)->group(function () {
     Route::post('/registerAuth', 'registerAuth')->name('registerAuth');
     Route::get('/login', 'login')->name('login');
     Route::post('/loginAuth', 'loginAuth')->name('loginAuth');
-    Route::get('/home', 'home')->name('home');
     Route::post('/logout', 'logout')->name('logout');
 });
 
@@ -24,12 +25,18 @@ Route::prefix('social')->group(function () {
 });
 
 Route::controller(ProductController::class)->group(function () {
-    Route::get('/home',  'getProduct')->name('home');
+    Route::get('/home',  'home')->name('home');
     Route::get('/product/{id}',  'details')->name('product.detail');
-    Route::post('/addToCart',  'addToCart')->name('addToCart');
+});
+
+Route::controller(CartController::class)->group(function () {
     Route::get('/cart',  'cart')->name('cart');
+    Route::post('/addToCart',  'addToCart')->name('addToCart');
     Route::post('/cart/update', 'updateCart')->name('cart.update');
     Route::post('/cart/coupon', 'applyCoupon')->name('cart.coupon');
+});
+
+Route::controller(OrderController::class)->group(function () {
     Route::get('/checkout',  'checkout')->name('checkout');
 });
 

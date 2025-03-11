@@ -70,12 +70,6 @@ class LoginAndRegisterController extends Controller implements HasMiddleware
         ])->onlyInput('email');
     }
 
-
-    public function home(): View
-    {
-        return view('home');
-    }
-
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
