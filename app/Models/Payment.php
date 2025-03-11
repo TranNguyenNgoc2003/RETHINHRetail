@@ -17,8 +17,8 @@ class Payment extends Model
         'path_logo',
     ];
 
-    public function order()
+    public function detailOrder()
     {
-        return $this->hasOne(Order::class);
+        return $this->hasOne(detailOrder::class);
     }
 }

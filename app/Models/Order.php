@@ -25,9 +25,4 @@ class Order extends Model
     {
         return $this->belongsTo(DetailOrder::class, 'detail_order_id');
     }
-
-    public function payment()
-    {
-        return $this->belongsTo(Payment::class, 'payment_id');
-    }
 }

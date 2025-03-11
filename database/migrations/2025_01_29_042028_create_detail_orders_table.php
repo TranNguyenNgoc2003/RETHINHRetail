@@ -22,6 +22,8 @@ return new class extends Migration
             $table->foreign('deliveries_id')->references('id')->on('deliveries');
             $table->unsignedInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('cart');
+            $table->unsignedInteger('payment_id');
+            $table->foreign('payment_id')->references('id')->on('payment'); 
             $table->timestamps();
         });
     }

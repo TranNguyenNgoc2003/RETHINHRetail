@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('status');
             $table->unsignedInteger('detail_order_id');
             $table->foreign('detail_order_id')->references('id')->on('detail_orders');
-            $table->unsignedInteger('payment_id');
-            $table->foreign('payment_id')->references('id')->on('payment'); 
             $table->enum('payment_status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
             $table->timestamps();
         });
