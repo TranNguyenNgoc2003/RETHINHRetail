@@ -12,6 +12,7 @@ class CustomerServiceController extends Controller
     {
         return view('about');
     }
+    
     public function addQuestion(Request $request)
     {
         $request->validate([

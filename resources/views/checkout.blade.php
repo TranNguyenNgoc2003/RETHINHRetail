@@ -32,14 +32,12 @@
                                                     <span class="shipping__info--desciption">Hãy chọn địa chỉ giao
                                                         hàng</span>
                                                 @endif
-
                                             </div>
                                             <a href="{{ route('shipping.index') }}" class="shipping__change">
                                                 <i class="fas fa-edit"></i>
                                                 <span>Thay đổi địa chỉ giao hàng</span>
                                             </a>
                                         </div>
-
                                     </div>
                                 </li>
                                 <li class="checkout__item">
@@ -74,7 +72,6 @@
                                                 @endforeach
                                             </div>
                                         </div>
-
                                     </div>
                                 </li>
                             </ul>
@@ -111,7 +108,6 @@
                                 {{ number_format(round($item->product->price - ($item->product->price / 100) * $item->product->discount, -5), 0, ',', '.') }}
                                 VND x {{ $item->count }}
                             </span>
-
                         </div>
                         <div class="checkout-summary__item">
                             <span class="checkout-summary__item--text">Tổng cộng:</span>
@@ -143,7 +139,6 @@
                         </div>
                         <button class="btn btn-primary w-100">Xác nhận đơn hàng</button>
                     </div>
-
                 </div>
             @elseif (!Auth::check())
                 <div class="cart__content--title">
