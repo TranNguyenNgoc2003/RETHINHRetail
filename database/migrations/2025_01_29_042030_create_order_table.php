@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('total_price');
             $table->double('shipping_fee');
+            $table->double('discount');
+            $table->double('total_price');
             $table->string('status');
-            $table->boolean('pay');
-            $table->unsignedInteger('coupon_id');
-            $table->foreign('coupon_id')->references('id')->on('coupon');
-            $table->unsignedInteger('deliveries_id');
-            $table->foreign('deliveries_id')->references('id')->on('deliveries');
+            $table->unsignedInteger('detail_order_id');
+            $table->foreign('detail_order_id')->references('id')->on('detail_orders');
             $table->unsignedInteger('payment_id');
-            $table->foreign('payment_id')->references('id')->on('payment');
+            $table->foreign('payment_id')->references('id')->on('payment'); 
+            $table->enum('payment_status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
             $table->timestamps();
         });
     }

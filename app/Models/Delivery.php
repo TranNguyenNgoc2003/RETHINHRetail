@@ -2,17 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Delivery extends Model
 {
-    use HasFactory;
-
-    protected $table = 'deliveries';
-    protected $primaryKey = 'id';
-    public $timestamps = true;
-
     protected $fillable = [
         'fullname',
         'address',
@@ -24,5 +17,10 @@ class Delivery extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function detailOrders()
+    {
+        return $this->hasMany(DetailOrder::class, 'deliveries_id');
     }
 }

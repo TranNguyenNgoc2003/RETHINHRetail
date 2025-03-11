@@ -2,37 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
-
     protected $table = 'order';
 
     protected $fillable = [
-        'total_price',
         'shipping_fee',
+        'discount',
+        'total_price',
         'status',
-        'pay',
-        'coupon_id',
-        'deliveries_id',
+        'detail_order_id',
         'payment_id',
+        'payment_status',
     ];
 
-    public function coupon()
+    public function detailOrder()
     {
-        return $this->belongsTo(Coupon::class, 'coupon_id');
+        return $this->belongsTo(DetailOrder::class, 'detail_order_id');
     }
 
-    public function delivery()
+    public function payment()
     {
-        return $this->belongsTo(Delivery::class, 'deliveries_id');
+        return $this->belongsTo(Payment::class, 'payment_id');
     }
-
-    // public function payment()
-    // {
-    //     return $this->belongsTo(Payment::class, 'payment_id');
-    // }
 }

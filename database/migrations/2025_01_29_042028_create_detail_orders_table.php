@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('name_product');
             $table->integer('count');
             $table->string('total_price');
-            $table->unsignedInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('order');
+            $table->unsignedInteger('coupon_id');
+            $table->foreign('coupon_id')->references('id')->on('coupon');
+            $table->unsignedInteger('deliveries_id');
+            $table->foreign('deliveries_id')->references('id')->on('deliveries');
             $table->unsignedInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('cart');
             $table->timestamps();

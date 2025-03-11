@@ -13,14 +13,8 @@ return new class extends Migration
     {
         Schema::create('payment', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('payment_type')->nullable();
-            $table->string('payment_info')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('card_number')->nullable();
-            $table->date('card_date')->nullable();
-            $table->string('card_username')->nullable();
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('method')->unique();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

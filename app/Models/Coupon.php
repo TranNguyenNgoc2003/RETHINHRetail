@@ -22,9 +22,9 @@ class Coupon extends Model
         'describe',
     ];
 
-    public function orders()
+    public function detailOrder()
     {
-        return $this->hasMany(Order::class, 'coupon_id');
+        return $this->hasMany(DetailOrder::class, 'coupon_id');
     }
 
     public function getFormattedStartDateAttribute()
