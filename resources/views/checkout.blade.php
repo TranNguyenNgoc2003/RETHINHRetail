@@ -29,8 +29,8 @@
                                                         class="shipping__info--address">{{ $selectedAddress->address }}</span>
                                                     <span class="shipping__info--phone">{{ $selectedAddress->phone }}</span>
                                                 @else
-                                                <span
-                                                class="shipping__info--desciption">Hãy chọn địa chỉ giao hàng</span>
+                                                    <span class="shipping__info--desciption">Hãy chọn địa chỉ giao
+                                                        hàng</span>
                                                 @endif
 
                                             </div>
@@ -57,47 +57,24 @@
                                         <div class="row optionPayment">
                                             <h5 class="optionPayment__title font-size-14 mb-3">Phương thức thanh toán:</h5>
                                             <div class="optionPayment__method">
-                                                <div class="optionPayment__method--item method">
-                                                    <label class="method__label">
-                                                        <input type="radio" name="pay-method" id="pay-methodoption1"
-                                                            class="method__label--radio" checked="">
-                                                        <div class="method__label--content">
-                                                            <div class="method__label--content-image">
-                                                                <img src="{{ asset('images/visa-mastercard-logos.png') }}"
-                                                                    alt="">
+                                                @foreach ($payments as $payment)
+                                                    <div class="optionPayment__method--item method">
+                                                        <label class="method__label">
+                                                            <input type="radio" name="pay-method" id="pay-methodoption1"
+                                                                class="method__label--radio" {{ $loop->first ? 'checked' : '' }}>
+                                                            <div class="method__label--content">
+                                                                <div class="method__label--content-image">
+                                                                    <img src="{{ asset('images/' . $payment->path_logo) }}"
+                                                                        alt="{{ $payment->method }}">
+                                                                </div>
+                                                                <p> {{ $payment->description }}</p>
                                                             </div>
-                                                            <p> Thẻ tín dụng/ghi nợ </p>
-                                                        </div>
-                                                    </label>
-                                                </div>
-                                                <div class="optionPayment__method--item method">
-                                                    <label class="method__label">
-                                                        <input type="radio" name="pay-method" id="pay-methodoption1"
-                                                            class="method__label--radio">
-                                                        <div class="method__label--content">
-                                                            <div class="method__label--content-image">
-                                                                <img src="{{ asset('images/Logo-VNPAY-QR.png') }}"
-                                                                    alt="">
-                                                            </div>
-                                                            <p>Ví điện tử VNPAY</p>
-                                                        </div>
-                                                    </label>
-                                                </div>
-                                                <div class="optionPayment__method--item method">
-                                                    <label class="method__label">
-                                                        <input type="radio" name="pay-method" id="pay-methodoption1"
-                                                            class="method__label--radio">
-                                                        <div class="method__label--content">
-                                                            <div class="method__label--content-image">
-                                                                <img src="{{ asset('images/cash-on-delivery.png') }}"
-                                                                    alt="">
-                                                            </div>
-                                                            <p>Thanh toán khi nhận hàng</p>
-                                                        </div>
-                                                    </label>
-                                                </div>
+                                                        </label>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
+
                                     </div>
                                 </li>
                             </ul>

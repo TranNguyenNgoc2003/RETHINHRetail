@@ -31,4 +31,8 @@ class DetailOrder extends Model
     {
         return $this->belongsTo(Cart::class, 'cart_id');
     }
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }

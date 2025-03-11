@@ -9,8 +9,16 @@ class Payment extends Model
 {
     use HasFactory;
 
+    protected $table = 'payment';
+    
     protected $fillable = [
         'method',
         'description',
+        'path_logo',
     ];
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('payment', function (Blueprint $table) {
             $table->increments('id');
             $table->string('method')->unique();
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
+            $table->string('path_logo');
             $table->timestamps();
         });
     }

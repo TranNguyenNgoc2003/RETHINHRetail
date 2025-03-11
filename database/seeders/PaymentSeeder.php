@@ -13,9 +13,21 @@ class PaymentSeeder extends Seeder
     public function run(): void
     {
         DB::table('payment')->insert([
-            ['method' => 'COD', 'description' => 'Thanh toán khi nhận hàng'],
-            ['method' => 'Credit/Debit Card', 'description' => 'Thanh toán bằng thẻ tín dụng hoặc ghi nợ'],
-            ['method' => 'VNPAY', 'description' => 'Ví điện tử VNPAY'],
+            [
+                'method' => 'Credit/Debit Card',
+                'description' => 'Thẻ tín dụng hoặc ghi nợ',
+                'path_logo' => 'visa-mastercard-logos.png'
+            ],
+            [
+                'method' => 'VNPAY',
+                'description' => 'Ví điện tử VNPAY',
+                'path_logo' => 'Logo-VNPAY-QR.png'
+            ],
+            [
+                'method' => 'COD',
+                'description' => 'Thanh toán khi nhận hàng',
+                'path_logo' => 'cash-on-delivery.png'
+            ],
         ]);
     }
 }
