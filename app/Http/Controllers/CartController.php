@@ -59,6 +59,10 @@ class CartController extends Controller
                 'count' => 1,
                 'user_id' => $user_id,
                 'product_id' => $product->id,
+                'option_cpu' => $product->option_cpu,
+                'option_gpu' => $product->option_gpu,
+                'option_ram' => $product->option_ram,
+                'option_hard' => $product->option_hard,
             ]);
             $product->total_product -= 1;
             $product->save();

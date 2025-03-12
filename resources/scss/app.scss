@@ -1015,6 +1015,16 @@ checkout
     margin-top: 9%;
     margin-bottom: 10%;
     padding-bottom: 60px;
+    form{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__formInfo{
+        width: 66%;
+    }
+    &__summary{
+        width: 32%;
+    }
 }
 
 .card {

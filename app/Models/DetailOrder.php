@@ -13,11 +13,17 @@ class DetailOrder extends Model
 
     protected $fillable = [
         'name_product',
+        'option_cpu',
+        'option_gpu',
+        'option_ram',
+        'option_hard',
         'count',
         'total_price',
         'coupon_id',
         'deliveries_id',
         'cart_id',
+        'payment_id',
+        'order_id',
     ];
 
     public function coupon()

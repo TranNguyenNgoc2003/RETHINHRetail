@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('cart', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name_product');
+            $table->string('option_cpu')->nullable();
+            $table->string('option_gpu')->nullable();
+            $table->string('option_ram')->nullable();
+            $table->string('option_hard')->nullable();
             $table->double('price_product');
             $table->integer('count');
             $table->unsignedInteger('user_id');

@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('username');
             $table->double('shipping_fee');
             $table->double('discount');
             $table->double('total_price');
-            $table->string('status');
-            $table->unsignedInteger('detail_order_id');
-            $table->foreign('detail_order_id')->references('id')->on('detail_orders');
+            $table->string('status')->nullable();
             $table->enum('payment_status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
             $table->timestamps();
         });

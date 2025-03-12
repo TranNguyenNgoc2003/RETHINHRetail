@@ -18,7 +18,7 @@
                                     class="cartItem__info">
                                     <h6 class="cartItem__info--title">{{ $item->name_product }}</h6>
                                     <p class="cartItem__info--description">
-                                        {{ implode(' ', array_filter([$item->product->option_cpu, $item->product->option_ram, $item->product->option_hard, $item->product->option_gpu])) }}
+                                        {{ implode(' ', array_filter([$item->option_cpu, $item->option_ram, $item->option_hard, $item->option_gpu])) }}
                                     </p>
                                 </a>
 

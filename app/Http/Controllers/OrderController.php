@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\Models\Delivery;
+use App\Models\DetailOrder;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,5 +34,72 @@ class OrderController extends Controller
         $total = $subtotal + $shipping_fee - $discount;
 
         return view('checkout', compact('checkout', 'subtotal', 'shipping_fee', 'discount', 'total', 'selectedAddress', 'payments'));
+    }
+
+    public function applyDetailsOrder(Request $request)
+    {
+        $user_id = Auth::id();
+
+        $request->validate([
+            'pay-method' => 'required',
+        ]);
+
+        $cartItems = Cart::where('user_id', $user_id)->get();
+
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart')->with('error', 'Giỏ hàng của bạn đang trống.');
+        }
+
+        $selectedAddress = Delivery::where('user_id', $user_id)
+            ->where('is_active', true)
+            ->first();
+
+        if (!$selectedAddress) {
+            return redirect()->route('checkout')->with('error', 'Vui lòng chọn địa chỉ giao hàng.');
+        }
+
+        $payment = Payment::find($request->input('pay-method'));
+
+        if (!$payment) {
+            return redirect()->route('checkout')->with('error', 'Phương thức thanh toán không hợp lệ.');
+        }
+
+        $subtotal = $cartItems->sum(fn($item) => $item->price_product * $item->count);
+        $shipping_fee = 0;
+        $couponData = Session::get('coupon');
+        $discount = $couponData['discount'] ?? 0;
+        $couponId = Coupon::where('code', Session::get('coupon'))->first()->id ?? NULL;
+        $total = $subtotal + $shipping_fee - $discount;
+        foreach ($cartItems as $item) {
+            DetailOrder::create([
+                'name_product' => $item->name_product,
+                'count' => $item->count,
+                'total_price' => $total,
+                'coupon_id' => $couponId,
+                'deliveries_id' => $selectedAddress->id,
+                'cart_id' => $item->id,
+                'payment_id' => $payment->id,
+                'option_cpu' => $item->option_cpu,
+                'option_gpu' => $item->option_gpu,
+                'option_ram' => $item->option_ram,
+                'option_hard' => $item->option_hard,
+                'order_id' => NULL,
+            ]);
+        }
+
+        if ($couponId) {
+            $coupon = Coupon::find($couponId);
+            if ($coupon && $coupon->count > 0) {
+                $coupon->decrement('count');
+            }
+        }
+
+        return redirect()->route('complete')->with('success', 'Đơn hàng của bạn đã được xác nhận.');
+    }
+
+
+    public function complete(): View
+    {
+        return view('complete');
     }
 }
