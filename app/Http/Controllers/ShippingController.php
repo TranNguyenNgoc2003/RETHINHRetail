@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use App\Models\DetailOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -91,6 +92,7 @@ class ShippingController extends Controller
     public function delete($orderId, $id)
     {
         $address = Delivery::where('id', $id)->where('user_id', Auth::id())->first();
+        DetailOrder::where('deliveries_id', $id)->update(['deliveries_id' => null]);
         if (Auth::check() == false) {
             return redirect()->route('home');
         }

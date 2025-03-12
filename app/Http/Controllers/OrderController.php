@@ -113,17 +113,23 @@ class OrderController extends Controller
             return redirect()->route('checkout')->with('error', 'Phương thức thanh toán không hợp lệ.');
         }
 
+        $status = NULL;
+        if ($request->input('order_note')) {
+            $status = $request->input('order_note');
+        }
+
         foreach ($detailOrders as $item) {
             $item->update([
                 'deliveries_id' => $selectedAddress->id,
                 'payment_id' => $payment->id,
             ]);
         }
-        
+
         $order->update([
             'fullname' => $selectedAddress->fullname,
             'address' => $selectedAddress->address,
             'phone' => $selectedAddress->phone,
+            'status' => $status,
         ]);
         return redirect()->route('complete', ['orderId' => $orderId])->with('success', 'Đơn hàng đã được xác nhận!');
     }
@@ -131,6 +137,7 @@ class OrderController extends Controller
     public function complete($orderId)
     {
         $order = Order::findOrFail($orderId);
+        dump($order);
         return view('complete', compact('order'));
     }
 }

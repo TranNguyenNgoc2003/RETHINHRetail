@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\DetailOrder;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -77,8 +78,8 @@ class CartController extends Controller
             ->first();
         if ($cartItem) {
             $product = Product::find($cartItem->product_id);
-
             if ($request->action == 'remove' || $request->action == 'decrease' && $cartItem->count == 1) {
+                DetailOrder::where('cart_id', $cartItem->id)->update(['cart_id' => null]);
                 $cartItem->delete();
                 Session::forget('coupon');
                 return redirect()->route('cart');

@@ -4,8 +4,8 @@
     <div class="container shopping">
         <div class="row">
             @if (count($checkout) > 0)
-            <form action="{{ route('checkout.confirm', ['orderId' => $order->id]) }}" method="POST">
-                @csrf
+                <form action="{{ route('checkout.confirm', ['orderId' => $order->id]) }}" method="POST">
+                    @csrf
                     <div class="shopping__formInfo">
                         <div class="card">
                             <div class="card__body">
@@ -18,7 +18,8 @@
                                         </div>
                                         <div class="checkout__item--content">
                                             <h5 class="checkout__item--content-title">Thông tin vận chuyển</h5>
-                                            <p class="checkout__item--content-text">Vui lòng kiểm tra lại thông tin giao đảm bảo chính xác.</p>
+                                            <p class="checkout__item--content-text">Vui lòng kiểm tra lại thông tin giao đảm
+                                                bảo chính xác.</p>
                                             <div class="shipping">
                                                 <div class="shipping__info">
                                                     <h5 class="shipping__info--title">Địa chỉ giao hàng</h5>
@@ -34,10 +35,11 @@
                                                             hàng</span>
                                                     @endif
                                                 </div>
-                                                <a href="{{ route('shipping.index', ['orderId' => $order->id]) }}" class="shipping__change">
+                                                <a href="{{ route('shipping.index', ['orderId' => $order->id]) }}"
+                                                    class="shipping__change">
                                                     <i class="fas fa-edit"></i>
                                                     <span>Thay đổi địa chỉ giao hàng</span>
-                                                </a>                                                
+                                                </a>
                                             </div>
                                         </div>
                                     </li>
@@ -50,7 +52,8 @@
                                         <div class="checkout__item--content">
                                             <div class="row">
                                                 <h5 class="checkout__item--content-title">Thông tin thanh toán</h5>
-                                                <p class="checkout__item--content-text">Thông tin thanh toán của bạn sẽ được bảo mật tuyệt đối.</p>
+                                                <p class="checkout__item--content-text">Thông tin thanh toán của bạn sẽ được
+                                                    bảo mật tuyệt đối.</p>
                                             </div>
                                             <div class="row optionPayment">
                                                 <h5 class="optionPayment__title font-size-14 mb-3">Phương thức thanh toán:
@@ -77,6 +80,22 @@
                                             </div>
                                         </div>
                                     </li>
+                                    <li class="checkout__item">
+                                        <div class="avatar checkout__item--icon">
+                                            <div class="avatar__title">
+                                                <i class="fas fa-comment-alt"></i>
+                                            </div>
+                                        </div>
+                                        <div class="checkout__item--content">
+                                            <div class="row">
+                                                <h5 class="checkout__item--content-title">Ghi chú</h5>
+                                                <p class="checkout__item--content-text">Bạn có ghi chú gì cho đơn hàng này không?</p>
+                                            </div>
+                                            <div class="row">
+                                                <textarea name="order_note" class="form-control" rows="3" placeholder="Nhập ghi chú của bạn ở đây..."></textarea>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -97,7 +116,6 @@
                                     <img src="{{ asset('images/Product/' . $item->cart->product->images->first()->path_img) }}"
                                         alt="{{ $item->name_product }}" class="checkout-summary__item--image-img">
                                 </span>
-
                                 <span class="checkout-summary__item--info">
                                     <h6 class="checkout-summary__item--info-title">{{ $item->name_product }}</h6>
                                     <p class="checkout-summary__item--info-description">
@@ -120,7 +138,6 @@
                             </div>
                             <p class="checkout-summary__line"></p>
                         @endforeach
-
 
                         <div class="summary">
                             <h5 class="summary__title">Tóm tắt đơn hàng</h5>
