@@ -15,7 +15,9 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('username');
+            $table->string('fullname')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
             $table->double('shipping_fee');
             $table->double('discount');
             $table->double('total_price');

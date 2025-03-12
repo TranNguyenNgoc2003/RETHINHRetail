@@ -50,8 +50,6 @@ class CartController extends Controller
         if ($cartItem) {
             $cartItem->count += 1;
             $cartItem->save();
-            $product->total_product -= 1;
-            $product->save();
         } else {
             Cart::create([
                 'name_product' => $product->name_product,
@@ -64,8 +62,6 @@ class CartController extends Controller
                 'option_ram' => $product->option_ram,
                 'option_hard' => $product->option_hard,
             ]);
-            $product->total_product -= 1;
-            $product->save();
         }
 
         Session::forget('coupon');
@@ -83,20 +79,15 @@ class CartController extends Controller
             $product = Product::find($cartItem->product_id);
 
             if ($request->action == 'remove' || $request->action == 'decrease' && $cartItem->count == 1) {
-                $product->total_product += $cartItem->count;
-                $product->save();
                 $cartItem->delete();
                 Session::forget('coupon');
                 return redirect()->route('cart');
-            } elseif ($request->action == 'increase' && $product->total_product > 0) {
+            } elseif ($request->action == 'increase' && $product->total_product > 0 && $cartItem->count <= $product->total_product) {
                 $cartItem->count += 1;
-                $product->total_product -= 1;
             } elseif ($request->action == 'decrease' && $cartItem->count > 1) {
                 $cartItem->count -= 1;
-                $product->total_product += 1;
             }
             $cartItem->save();
-            $product->save();
 
             Session::forget('coupon');
         }

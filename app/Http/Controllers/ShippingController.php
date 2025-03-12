@@ -10,20 +10,22 @@ use Illuminate\View\View;
 
 class ShippingController extends Controller
 {
-    public function index()
+    public function index($orderId)
     {
         $user = Auth::user();
         $deliveries = $user->deliveries;
 
-        return view('shipping.index', compact('deliveries'));
+        return view('shipping.index', compact('deliveries', 'orderId'));
     }
 
-    public function create()
+
+    public function create($orderId)
     {
-        return view('shipping.create');
+        return view('shipping.create', compact('orderId'));
     }
 
-    public function selectAddress(Request $request)
+
+    public function selectAddress(Request $request, $orderId)
     {
         $request->validate([
             'address_id' => 'required|exists:deliveries,id',
@@ -37,11 +39,12 @@ class ShippingController extends Controller
         $selectedAddress->is_active = true;
         $selectedAddress->save();
 
-        return redirect()->route('checkout');
+        return redirect()->route('checkout.show', ['orderId' => $orderId]);
     }
 
 
-    public function addDelivery(Request $request)
+
+    public function addDelivery(Request $request, $orderId)
     {
         $request->validate([
             'fullname' => 'required|string|max:255',
@@ -57,16 +60,17 @@ class ShippingController extends Controller
             'is_active' => false,
         ]);
 
-        return redirect()->route('shipping.index');
+        return redirect()->route('shipping.index', ['orderId' => $orderId]);
     }
 
-    public function edit($id)
+
+    public function edit($orderId, $id)
     {
         $address = Delivery::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-        return view('shipping.edit', compact('address'));
+        return view('shipping.edit', compact('address', 'orderId'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $orderId, $id)
     {
         $request->validate([
             'fullname' => 'required|string|max:255',
@@ -81,19 +85,20 @@ class ShippingController extends Controller
             'phone' => $request->phone,
         ]);
 
-        return redirect()->route('shipping.index')->with('success', 'Đã cập nhật địa chỉ.');
+        return redirect()->route('shipping.index', ['orderId' => $orderId])->with('success', 'Đã cập nhật địa chỉ.');
     }
-    public function delete($id)
+
+    public function delete($orderId, $id)
     {
         $address = Delivery::where('id', $id)->where('user_id', Auth::id())->first();
         if (Auth::check() == false) {
             return redirect()->route('home');
         }
         if (!$address) {
-            return redirect()->route('shipping.index')->with('error', 'Không tìm thấy địa chỉ.');
+            return redirect()->route('shipping.index', ['orderId' => $orderId])->with('error', 'Không tìm thấy địa chỉ.');
         } elseif (Auth::user()->id == $address->user_id) {
             $address->delete();
-            return redirect()->route('shipping.index');
+            return redirect()->route('shipping.index', ['orderId' => $orderId]);
         }
         return redirect()->route('home');
     }

@@ -4,8 +4,8 @@
     <div class="container shopping">
         <div class="row">
             @if (count($checkout) > 0)
-                <form action="{{ route('checkout.apply') }}" method="POST">
-                    @csrf
+            <form action="{{ route('checkout.confirm', ['orderId' => $order->id]) }}" method="POST">
+                @csrf
                     <div class="shopping__formInfo">
                         <div class="card">
                             <div class="card__body">
@@ -18,7 +18,7 @@
                                         </div>
                                         <div class="checkout__item--content">
                                             <h5 class="checkout__item--content-title">Thông tin vận chuyển</h5>
-                                            <p class="checkout__item--content-text">Vui lòng kiểm tra lại thông tin giao đảmbảo chính xác.</p>
+                                            <p class="checkout__item--content-text">Vui lòng kiểm tra lại thông tin giao đảm bảo chính xác.</p>
                                             <div class="shipping">
                                                 <div class="shipping__info">
                                                     <h5 class="shipping__info--title">Địa chỉ giao hàng</h5>
@@ -34,10 +34,10 @@
                                                             hàng</span>
                                                     @endif
                                                 </div>
-                                                <a href="{{ route('shipping.index') }}" class="shipping__change">
+                                                <a href="{{ route('shipping.index', ['orderId' => $order->id]) }}" class="shipping__change">
                                                     <i class="fas fa-edit"></i>
                                                     <span>Thay đổi địa chỉ giao hàng</span>
-                                                </a>
+                                                </a>                                                
                                             </div>
                                         </div>
                                     </li>
@@ -50,9 +50,7 @@
                                         <div class="checkout__item--content">
                                             <div class="row">
                                                 <h5 class="checkout__item--content-title">Thông tin thanh toán</h5>
-                                                <p class="checkout__item--content-text">Thông tin thanh toán của bạn sẽ được
-                                                    bảo
-                                                    mật tuyệt đối.</p>
+                                                <p class="checkout__item--content-text">Thông tin thanh toán của bạn sẽ được bảo mật tuyệt đối.</p>
                                             </div>
                                             <div class="row optionPayment">
                                                 <h5 class="optionPayment__title font-size-14 mb-3">Phương thức thanh toán:
@@ -61,9 +59,10 @@
                                                     @foreach ($payments as $payment)
                                                         <div class="optionPayment__method--item method">
                                                             <label class="method__label">
-                                                                <input type="radio" name="pay-method"
-                                                                    id="pay-method" class="method__label--radio"
-                                                                    {{ $loop->first ? 'checked' : '' }} value="{{ $payment->id }}">
+                                                                <input type="radio" name="pay-method" id="pay-method"
+                                                                    class="method__label--radio"
+                                                                    {{ $loop->first ? 'checked' : '' }}
+                                                                    value="{{ $payment->id }}">
                                                                 <div class="method__label--content">
                                                                     <div class="method__label--content-image">
                                                                         <img src="{{ asset('images/' . $payment->path_logo) }}"
@@ -92,10 +91,10 @@
                         </div>
                     </div>
                     <div class="shopping__summary checkout-summary">
-                        @foreach ($checkout as $item)
+                        @foreach ($detailOrder as $item)
                             <div class="checkout-summary__item">
                                 <span class="checkout-summary__item--image">
-                                    <img src="{{ asset('images/Product/' . $item->product->images->first()->path_img) }}"
+                                    <img src="{{ asset('images/Product/' . $item->cart->product->images->first()->path_img) }}"
                                         alt="{{ $item->name_product }}" class="checkout-summary__item--image-img">
                                 </span>
 
@@ -109,18 +108,19 @@
                             <div class="checkout-summary__item">
                                 <span class="checkout-summary__item--text">Giá tiền:</span>
                                 <span class="checkout-summary__item--quantity">
-                                    {{ number_format(round($item->product->price - ($item->product->price / 100) * $item->product->discount, -5), 0, ',', '.') }}
-                                    VND x {{ $item->count }}
+                                    {{ number_format(round($item->cart->product->price - ($item->cart->product->price / 100) * $item->cart->product->discount, -5), 0, ',', '.') }}
+                                    VND x {{ $item->cart->count }}
                                 </span>
                             </div>
                             <div class="checkout-summary__item">
                                 <span class="checkout-summary__item--text">Tổng cộng:</span>
                                 <p class="checkout-summary__item--price">
-                                    {{ number_format($item->price_product * $item->count, 0, ',', '.') }} VND
+                                    {{ number_format($item->total_price, 0, ',', '.') }} VND
                                 </p>
                             </div>
                             <p class="checkout-summary__line"></p>
                         @endforeach
+
 
                         <div class="summary">
                             <h5 class="summary__title">Tóm tắt đơn hàng</h5>
@@ -130,16 +130,16 @@
                             </div>
                             <div class="summary__title--item">
                                 <span>Vận chuyển:</span>
-                                <span>{{ number_format($shipping_fee, 0, ',', '.') }} VND</span>
+                                <span>{{ number_format($order->shipping_fee, 0, ',', '.') }} VND</span>
                             </div>
                             <div class="summary__title--item">
                                 <span>Giảm giá:</span>
-                                <span>{{ number_format($discount, 0, ',', '.') }} VND</span>
+                                <span>{{ number_format($order->discount, 0, ',', '.') }} VND</span>
                             </div>
                             <hr>
                             <div class="summary__title--item">
                                 <strong>Tổng số tiền thanh toán:</strong>
-                                <strong>{{ number_format($total, 0, ',', '.') }} VND</strong>
+                                <strong>{{ number_format($order->total_price, 0, ',', '.') }} VND</strong>
                             </div>
                             <button class="btn btn-primary w-100">Xác nhận đơn hàng</button>
                         </div>

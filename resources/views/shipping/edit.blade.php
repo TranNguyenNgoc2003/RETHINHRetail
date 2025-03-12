@@ -3,7 +3,7 @@
 @section('content_app')
     <div class="shipping-form">
         <h3 class="shipping-form__title">Chỉnh sửa địa chỉ giao hàng</h3>
-        <form action="{{ route('shipping.update', $address->id) }}" method="POST" class="shipping-form__form">
+        <form action="{{ route('shipping.update', ['orderId' => $orderId, 'id' => $address->id]) }}" method="POST" class="shipping-form__form">
             @csrf
             @method('PUT')
 

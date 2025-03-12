@@ -37,17 +37,20 @@ Route::controller(CartController::class)->group(function () {
 });
 
 Route::controller(OrderController::class)->group(function () {
-    Route::get('/checkout',  'checkout')->name('checkout');
+    Route::get('/checkout', 'checkout')->name('checkout');
+    Route::post('/checkout/{orderId}/confirm', 'applyOrder')->name('checkout.confirm');
+    Route::get('/checkout/{orderId}', 'showCheckout')->name('checkout.show');
+    Route::get('/complete/{orderId}', 'complete')->name('complete');
 });
 
 Route::controller(ShippingController::class)->group(function () {
-    Route::get('/shipping/index',  'index')->name('shipping.index');
-    Route::get('/shipping/create', 'create')->name('shipping.create');
-    Route::post('/shipping/addDelivery', 'addDelivery')->name('shipping.addDelivery');
-    Route::post('/shipping/select', 'selectAddress')->name('shipping.select');
-    Route::get('/shipping/{id}/edit', 'edit')->name('shipping.edit');
-    Route::put('/shipping/{id}', 'update')->name('shipping.update');
-    Route::get('/shipping/{id}/delete', 'delete')->name('shipping.delete');
+    Route::get('/shipping/{orderId}/index', 'index')->name('shipping.index');
+    Route::get('/shipping/{orderId}/create', 'create')->name('shipping.create');
+    Route::post('/shipping/{orderId}/addDelivery', 'addDelivery')->name('shipping.addDelivery');
+    Route::post('/shipping/{orderId}/select', 'selectAddress')->name('shipping.select');
+    Route::get('/shipping/{orderId}/{id}/edit', 'edit')->name('shipping.edit');
+    Route::put('/shipping/{orderId}/{id}', 'update')->name('shipping.update');
+    Route::get('/shipping/{orderId}/{id}/delete', 'delete')->name('shipping.delete');
 });
 
 Route::controller(CouponController::class)->group(function () {

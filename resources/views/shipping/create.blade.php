@@ -3,7 +3,7 @@
 @section('content_app')
     <div class="shipping-form">
         <h3 class="shipping-form__title">Thêm địa chỉ giao hàng mới</h3>
-        <form action="{{ route('shipping.addDelivery') }}" method="POST" class="shipping-form__form">
+        <form action="{{ route('shipping.addDelivery', ['orderId' => $orderId]) }}" method="POST" class="shipping-form__form">
             @csrf
             <div class="shipping-form__group">
                 <label for="fullname" class="shipping-form__label">Họ và tên</label>
