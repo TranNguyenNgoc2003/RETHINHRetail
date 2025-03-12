@@ -64,17 +64,12 @@ class OrderController extends Controller
             return redirect()->route('checkout')->with('error', 'Phương thức thanh toán không hợp lệ.');
         }
 
-        $subtotal = $cartItems->sum(fn($item) => $item->price_product * $item->count);
-        $shipping_fee = 0;
-        $couponData = Session::get('coupon');
-        $discount = $couponData['discount'] ?? 0;
         $couponId = Coupon::where('code', Session::get('coupon'))->first()->id ?? NULL;
-        $total = $subtotal + $shipping_fee - $discount;
         foreach ($cartItems as $item) {
             DetailOrder::create([
                 'name_product' => $item->name_product,
                 'count' => $item->count,
-                'total_price' => $total,
+                'total_price' => $item->price_product * $item->count,
                 'coupon_id' => $couponId,
                 'deliveries_id' => $selectedAddress->id,
                 'cart_id' => $item->id,
@@ -85,13 +80,6 @@ class OrderController extends Controller
                 'option_hard' => $item->option_hard,
                 'order_id' => NULL,
             ]);
-        }
-
-        if ($couponId) {
-            $coupon = Coupon::find($couponId);
-            if ($coupon && $coupon->count > 0) {
-                $coupon->decrement('count');
-            }
         }
 
         return redirect()->route('complete')->with('success', 'Đơn hàng của bạn đã được xác nhận.');
