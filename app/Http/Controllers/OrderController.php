@@ -17,7 +17,6 @@ use Illuminate\View\View;
 
 class OrderController extends Controller
 {
-
     public function checkout()
     {
         $user_id = Auth::id();
@@ -38,6 +37,7 @@ class OrderController extends Controller
                 'fullname' => NULL,
                 'address' => NULL,
                 'phone' => NULL,
+                'price' => NULL,
                 'shipping_fee' => NULL,
                 'discount' => NULL,
                 'total_price' => NULL,
@@ -76,14 +76,21 @@ class OrderController extends Controller
         $subtotal = $checkout->sum(function ($item) {
             return $item->price_product * $item->count;
         });
+
         $selectedAddress = Delivery::where('user_id', $order->user_id)
             ->where('is_active', true)
             ->first();
         $payments = Payment::all();
 
+        $discount = 0;
+        if (Session::get('coupon')) {
+            $discount = Session::get('coupon')['discount'];
+        }
+        $shipping_fee = 0;
+        $total = $subtotal + $shipping_fee - $discount;
         $detailOrder = DetailOrder::where('order_id', $orderId)->get();
 
-        return view('checkout', compact('checkout', 'order', 'selectedAddress', 'payments', 'detailOrder', 'subtotal'));
+        return view('checkout', compact('checkout', 'order', 'selectedAddress', 'payments', 'detailOrder', 'subtotal', 'shipping_fee', 'discount', 'total'));
     }
 
     public function applyOrder(Request $request, $orderId)
@@ -144,10 +151,11 @@ class OrderController extends Controller
                 'fullname' => $selectedAddress->fullname,
                 'address' => $selectedAddress->address,
                 'phone' => $selectedAddress->phone,
-                'status' => $status,
+                'price' => $subtotal,
                 'shipping_fee' => $shipping_fee,
                 'discount' => $discount,
                 'total_price' => $total,
+                'status' => $status,
                 'is_completed' => true,
             ]);
 
@@ -176,7 +184,6 @@ class OrderController extends Controller
     public function complete($orderId)
     {
         $order = Order::findOrFail($orderId);
-        $detailOrder = DetailOrder::where('order_id', $orderId)->get();
-        return view('complete', compact('order', 'detailOrder'));
+        return view('complete', compact('order'));
     }
 }

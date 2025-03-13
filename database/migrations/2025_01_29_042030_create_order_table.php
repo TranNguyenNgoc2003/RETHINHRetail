@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('fullname')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
+            $table->double('price')->nullable();
             $table->double('shipping_fee')->nullable();
             $table->double('discount')->nullable();
             $table->double('total_price')->nullable();

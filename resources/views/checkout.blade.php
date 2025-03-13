@@ -147,16 +147,16 @@
                             </div>
                             <div class="summary__title--item">
                                 <span>Vận chuyển:</span>
-                                <span>{{ number_format($order->shipping_fee, 0, ',', '.') }} VND</span>
+                                <span>{{ number_format($shipping_fee, 0, ',', '.') }} VND</span>
                             </div>
                             <div class="summary__title--item">
                                 <span>Giảm giá:</span>
-                                <span>{{ number_format($order->discount, 0, ',', '.') }} VND</span>
+                                <span>{{ number_format($discount, 0, ',', '.') }} VND</span>
                             </div>
                             <hr>
                             <div class="summary__title--item">
                                 <strong>Tổng số tiền thanh toán:</strong>
-                                <strong>{{ number_format($order->total_price, 0, ',', '.') }} VND</strong>
+                                <strong>{{ number_format($total, 0, ',', '.') }} VND</strong>
                             </div>
                             <button class="btn btn-primary w-100">Xác nhận đơn hàng</button>
                         </div>

@@ -1015,14 +1015,17 @@ checkout
     margin-top: 9%;
     margin-bottom: 10%;
     padding-bottom: 60px;
-    form{
+
+    form {
         display: flex;
         justify-content: space-between;
     }
-    &__formInfo{
+
+    &__formInfo {
         width: 66%;
     }
-    &__summary{
+
+    &__summary {
         height: fit-content;
         width: 32%;
     }
@@ -1640,6 +1643,57 @@ coupons
         align-items: center;
     }
 }
+
+/* 
+---------------------------------------------
+complete
+--------------------------------------------- 
+*/
+.order {
+    margin-top: 9%;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+
+    &__container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 40%;
+    }
+    &__icon{
+        display: flex;
+        justify-content: center;
+        color: #11ac64;
+        font-size: 120px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    &__title {
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #11ac64;
+    }
+
+    &__description {
+        text-align: center;
+    }
+
+    &__button {
+        display: block;
+        width: 250px;
+        margin: 25px auto;
+        padding: 10px 20px;
+
+    }
+}
+
 
 /* 
 ---------------------------------------------
