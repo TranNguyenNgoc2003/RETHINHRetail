@@ -21,10 +21,11 @@ class Order extends Model
         'total_price',
         'status',
         'payment_status',
+        'is_completed',
     ];
 
     public function detailOrder()
     {
-        return $this->belongsTo(DetailOrder::class, 'detail_order_id');
+        return $this->hasMany(DetailOrder::class, 'detail_order_id');
     }
 }

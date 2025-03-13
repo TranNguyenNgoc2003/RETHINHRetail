@@ -21,29 +21,34 @@ class OrderController extends Controller
     public function checkout()
     {
         $user_id = Auth::id();
-        $checkout = Cart::where('user_id', $user_id)->get();
         $cartItems = Cart::where('user_id', $user_id)->get();
 
         if ($cartItems->isEmpty()) {
             return redirect()->route('cart')->with('error', 'Giỏ hàng của bạn đang trống.');
         }
-        $couponId = Coupon::where('code', Session::get('coupon'))->first()->id ?? NULL;
 
-        $subtotal = $checkout->sum(fn($item) => $item->price_product * $item->count);
-        $shipping_fee = 0;
-        $coupon = Session::get('coupon', null);
-        $discount = $coupon['discount'] ?? 0;
-        $total = $subtotal + $shipping_fee - $discount;
+        $coupon = Coupon::where('code', Session::get('coupon'))->first();
+        $couponId = $coupon->id ?? NULL;
 
-        $order = Order::create([
-            'user_id' => $user_id,
-            'fullname' => NULL,
-            'address' => NULL,
-            'phone' => NULL,
-            'shipping_fee' => $shipping_fee,
-            'discount' => $discount,
-            'total_price' => $total,
-        ]);
+        $order = Order::where('user_id', $user_id)->where('is_completed', false)->first();
+
+        if (!$order) {
+            $order = Order::create([
+                'user_id' => $user_id,
+                'fullname' => NULL,
+                'address' => NULL,
+                'phone' => NULL,
+                'shipping_fee' => NULL,
+                'discount' => NULL,
+                'total_price' => NULL,
+                'is_completed' => false,
+            ]);
+        }
+
+        $detailOrder = DetailOrder::where('order_id', $order->id)->first();
+        if ($detailOrder) {
+            $detailOrder->delete();
+        }
 
         foreach ($cartItems as $item) {
             DetailOrder::create([
@@ -60,12 +65,10 @@ class OrderController extends Controller
                 'option_hard' => $item->option_hard,
                 'order_id' => $order->id,
             ]);
-            $product = Product::find($item->product_id);
-            $product->total_product -= $item->count;
-            $product->save();
         }
         return Redirect::route('checkout.show', ['orderId' => $order->id]);
     }
+
     public function showCheckout($orderId): View
     {
         $order = Order::findOrFail($orderId);
@@ -85,59 +88,95 @@ class OrderController extends Controller
 
     public function applyOrder(Request $request, $orderId)
     {
-        $detailOrders = DetailOrder::where('order_id', $orderId)->get();
-        $order = Order::find($orderId);
-        $user_id = Auth::id();
 
-        $request->validate([
-            'pay-method' => 'required',
-        ]);
+        $is_completed = Order::where('id', $orderId)->where('is_completed', true)->first();
+        if ($is_completed == true) {
+            return redirect()->route('cart')->with('error', 'Lỗi! Đơn hàng đã hoàn thành.');
+        } else {
+            $detailOrders = DetailOrder::where('order_id', $orderId)->get();
+            $order = Order::find($orderId);
+            $user_id = Auth::id();
 
-        $cartItems = Cart::where('user_id', $user_id)->get();
-
-        if ($cartItems->isEmpty()) {
-            return redirect()->route('cart')->with('error', 'Giỏ hàng của bạn đang trống.');
-        }
-
-        $selectedAddress = Delivery::where('user_id', $user_id)
-            ->where('is_active', true)
-            ->first();
-
-        if (!$selectedAddress) {
-            return redirect()->route('checkout')->with('error', 'Vui lòng chọn địa chỉ giao hàng.');
-        }
-
-        $payment = Payment::find($request->input('pay-method'));
-
-        if (!$payment) {
-            return redirect()->route('checkout')->with('error', 'Phương thức thanh toán không hợp lệ.');
-        }
-
-        $status = NULL;
-        if ($request->input('order_note')) {
-            $status = $request->input('order_note');
-        }
-
-        foreach ($detailOrders as $item) {
-            $item->update([
-                'deliveries_id' => $selectedAddress->id,
-                'payment_id' => $payment->id,
+            $request->validate([
+                'pay-method' => 'required',
             ]);
-        }
 
-        $order->update([
-            'fullname' => $selectedAddress->fullname,
-            'address' => $selectedAddress->address,
-            'phone' => $selectedAddress->phone,
-            'status' => $status,
-        ]);
-        return redirect()->route('complete', ['orderId' => $orderId])->with('success', 'Đơn hàng đã được xác nhận!');
+            $cartItems = Cart::where('user_id', $user_id)->get();
+
+            if ($cartItems->isEmpty()) {
+                return redirect()->route('cart')->with('error', 'Giỏ hàng của bạn đang trống.');
+            }
+
+            $selectedAddress = Delivery::where('user_id', $user_id)
+                ->where('is_active', true)
+                ->first();
+
+            if (!$selectedAddress) {
+                return redirect()->route('checkout')->with('error', 'Vui lòng chọn địa chỉ giao hàng.');
+            }
+
+            $payment = Payment::find($request->input('pay-method'));
+
+            if (!$payment) {
+                return redirect()->route('checkout')->with('error', 'Phương thức thanh toán không hợp lệ.');
+            }
+
+            $status = NULL;
+            if ($request->input('order_note')) {
+                $status = $request->input('order_note');
+            }
+
+            foreach ($detailOrders as $item) {
+                $item->update([
+                    'deliveries_id' => $selectedAddress->id,
+                    'payment_id' => $payment->id,
+                ]);
+            }
+
+            $checkout = Cart::where('user_id', $user_id)->get();
+            $subtotal = $checkout->sum(fn($item) => $item->price_product * $item->count);
+            $shipping_fee = 0;
+            $coupon = Session::get('coupon', null);
+            $discount = $coupon['discount'] ?? 0;
+            $total = $subtotal + $shipping_fee - $discount;
+
+            $order->update([
+                'fullname' => $selectedAddress->fullname,
+                'address' => $selectedAddress->address,
+                'phone' => $selectedAddress->phone,
+                'status' => $status,
+                'shipping_fee' => $shipping_fee,
+                'discount' => $discount,
+                'total_price' => $total,
+                'is_completed' => true,
+            ]);
+
+            if (Session::get('coupon') != null) {
+                $coupon = Coupon::where('code', Session::get('coupon'))->first();
+                $coupon->count -= 1;
+                $coupon->save();
+            }
+
+            $cartItems = Cart::where('user_id', $user_id)->get();
+
+            foreach ($cartItems as $item) {
+                $product = Product::find($item->product_id);
+                $product->total_product -= $item->count;
+                $product->save();
+                $detailOrder = DetailOrder::where('cart_id', $item->id)->first();
+                $detailOrder->update([
+                    'cart_id' => NULL,
+                ]);
+                $item->delete();
+            }
+            return redirect()->route('complete', ['orderId' => $orderId])->with('success', 'Đơn hàng đã được xác nhận!');
+        }
     }
 
     public function complete($orderId)
     {
         $order = Order::findOrFail($orderId);
-        dump($order);
-        return view('complete', compact('order'));
+        $detailOrder = DetailOrder::where('order_id', $orderId)->get();
+        return view('complete', compact('order', 'detailOrder'));
     }
 }

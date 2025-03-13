@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('fullname')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-            $table->double('shipping_fee');
-            $table->double('discount');
-            $table->double('total_price');
+            $table->double('shipping_fee')->nullable();
+            $table->double('discount')->nullable();
+            $table->double('total_price')->nullable();
             $table->string('status')->nullable();
             $table->enum('payment_status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }
