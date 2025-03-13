@@ -69,7 +69,7 @@
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
                                             href="{{ route('coupon') }}">Voucher</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">Lịch sử mua hàng</a></li>
+                                            href="{{ route('history') }}">Lịch sử mua hàng</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
                                             href="#">Đánh giá</a></li>
                                 </ul>

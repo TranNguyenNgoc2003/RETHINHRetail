@@ -12,6 +12,7 @@ class DetailOrder extends Model
     protected $table = 'detail_orders';
 
     protected $fillable = [
+        'product_id',
         'name_product',
         'option_cpu',
         'option_gpu',
@@ -24,6 +25,7 @@ class DetailOrder extends Model
         'cart_id',
         'payment_id',
         'order_id',
+        'created_at',
     ];
 
     public function coupon()
@@ -43,7 +45,7 @@ class DetailOrder extends Model
 
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'order_id');
     }
     
     public function payment()

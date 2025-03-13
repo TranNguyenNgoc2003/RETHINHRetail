@@ -41,6 +41,7 @@ Route::controller(OrderController::class)->group(function () {
     Route::post('/checkout/{orderId}/confirm', 'applyOrder')->name('checkout.confirm');
     Route::get('/checkout/{orderId}', 'showCheckout')->name('checkout.show');
     Route::get('/complete/{orderId}', 'complete')->name('complete');
+    Route::get('/history', 'history')->name('history');
 });
 
 Route::controller(ShippingController::class)->group(function () {

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('order_id')->nullable();
             $table->foreign('order_id')->references('id')->on('order');
+            $table->unsignedInteger('product_id');
             $table->string('name_product');
             $table->string('option_cpu')->nullable();
             $table->string('option_gpu')->nullable();
