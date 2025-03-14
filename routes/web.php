@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginAndRegisterController;
+use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\SocialLogin;
 use App\Http\Controllers\Auth\SocialLoginCallback;
 use App\Http\Controllers\CartController;
@@ -62,4 +63,9 @@ Route::controller(CouponController::class)->group(function () {
 Route::controller(CustomerServiceController::class)->group(function () {
     Route::get('/about', 'about')->name('about');
     Route::post('/customer-service', 'addQuestion')->name('customer_service.addQuestion');
+});
+
+Route::controller(ProfileController::class)->group(function () {
+    Route::get('/auth/profile', 'profile')->name('auth.profile');
+    Route::post('/profile/update', 'updateProfile')->name('profile.update');
 });

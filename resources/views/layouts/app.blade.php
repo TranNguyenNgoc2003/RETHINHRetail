@@ -82,7 +82,7 @@
                                     <a class="item__link" href="#">{{ Auth::user()->fullname }}</a>
                                     <ul class="item__dropdown">
                                         <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                                href="#">Thông tin cá nhân</a></li>
+                                                href="{{ route('auth.profile') }}">Thông tin cá nhân</a></li>
                                         <li class="item__dropdown--title"><a class="item__dropdown--title-link"
                                                 href="#">Địa chỉ nhận hàng</a></li>
                                         <li class="item__dropdown--title"><a class="item__dropdown--title-link"

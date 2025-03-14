@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('fullname')->nullable();
             $table->string('email')->unique();
             $table->string('password')->nullable();
+            $table->string('phone')->nullable();
+            $table->date('birthday')->nullable();
+            $table->string('gender')->nullable();
             $table->enum('social_provider', ['google', 'facebook'])->nullable();
             $table->string('social_id')->nullable();
             $table->unsignedInteger('permission_id')->default(1)->nullable();
