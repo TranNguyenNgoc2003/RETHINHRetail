@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Cart, Coupon, Delivery, DetailOrder, Order, Payment, Product};
+use App\Models\{Cart, Coupon, Delivery, DetailOrder, Image, Order, Payment, Product};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Auth, Redirect, Session};
 use Illuminate\View\View;
@@ -135,5 +135,62 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($orderId);
         return view('complete', compact('order'));
+    }
+
+    public function history(): View
+    {
+        $user_id = Auth::id();
+        $orders = Order::where('user_id', $user_id)->where('is_completed', true)->get();
+
+        $details = [];
+        $order_count = [];
+
+        foreach ($orders as $order) {
+            $order->detail_orders = DetailOrder::where('order_id', $order->id)->get();
+
+            foreach ($order->detail_orders as $item) {
+                $images = Image::where('product_id', $item->product_id)->first();
+                $payment = Payment::where('id', $item->payment_id)->first();
+                $details[] = [
+                    'id' => $order->id,
+                    'full_name' => $order->fullname,
+                    'address' => $order->address,
+                    'phone' => $order->phone,
+                    'price' => $order->price,
+                    'shipping_fee' => $order->shipping_fee,
+                    'discount' => $order->discount,
+                    'total_price' => $order->total_price,
+                    'status' => $order->status,
+                    'created_at' => $order->created_at,
+                    'name_product' => $item->name_product,
+                    'path_img' => $images->path_img,
+                    'option_cpu' => $item->option_cpu,
+                    'option_gpu' => $item->option_gpu,
+                    'option_ram' => $item->option_ram,
+                    'option_hard' => $item->option_hard,
+                    'count' => $item->count,
+                    'product_price' => $item->total_price,
+                    'payment_method' => $payment->description,
+                    'shipping_status' => $order->shipping_status
+                ];
+
+                if (!isset($order_count[$order->id])) {
+                    $order_count[$order->id] = 0;
+                }
+                $order_count[$order->id]++;
+            }
+        }
+
+        $lables_details = [];
+        $existing_ids = [];
+
+        foreach ($details as $item) {
+            if (!in_array($item['id'], $existing_ids)) {
+                $item['extend_count'] = $order_count[$item['id']] - 1;
+                $lables_details[] = $item;
+                $existing_ids[] = $item['id'];
+            }
+        }
+        return view('history', compact('orders','details', 'lables_details'));
     }
 }

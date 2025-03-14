@@ -1976,6 +1976,9 @@ history
         }
         &--price {
             display: flex;
+            &-title {
+                width: 80px;
+            }
             &-title, &-description {
                 font-size: 16px;
                 color: var(--muted-foreground);

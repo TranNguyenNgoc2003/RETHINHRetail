@@ -23,7 +23,8 @@ return new class extends Migration
             $table->double('discount')->nullable();
             $table->double('total_price')->nullable();
             $table->string('status')->nullable();
-            $table->enum('payment_status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
+            $table->enum('payment_status', ['Chờ xử lý', 'Đã thanh toán', 'Thất bại', 'Đã hoàn tiền'])->default('Chờ xử lý');
+            $table->enum('shipping_status', ['Đang giao','Đã giao hàng', 'Thất bại', 'Đã hoàn hàng'])->default('Đang giao');            
             $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });

@@ -23,6 +23,7 @@ class Order extends Model
         'status',
         'payment_status',
         'is_completed',
+        'shipping_status'
     ];
 
     public function detailOrders()
