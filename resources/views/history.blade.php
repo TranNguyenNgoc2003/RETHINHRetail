@@ -25,7 +25,7 @@
                             <div class="specs-grid__item w-100">
                                 <span class="specs-grid__label">Ngày đặt hàng:</span>
                                 <span class="specs-grid__value">
-                                    {{ $lables_detail['created_at'] }}
+                                    {{ $lables_detail['created_date'] }}
                                 </span>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                                         <div class="shipping-details__title--text shipping-details__body">
                                             <div class="shipping-details__body--title">Ngày đặt hàng:</div>
                                             <p class="shipping-details__body--info">
-                                                {{ $lables_detail['created_at'] }}
+                                                {{ $lables_detail['created_date'] }}
                                             </p>
                                         </div>
                                     </div>
@@ -139,7 +139,7 @@
                                     <div class="shipping-details__body">
                                         <div class="shipping-details__body--title">Vận chuyển:</div>
                                         <p class="shipping-details__body--info">
-                                            {{ $lables_detail['shipping_fee'] }}
+                                            {{ $lables_detail['shipping_fee'] }} VND
                                         </p>
                                     </div>
                                     <div class="shipping-details__body">

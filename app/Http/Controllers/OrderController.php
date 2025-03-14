@@ -22,8 +22,19 @@ class OrderController extends Controller
         $couponId = $coupon->id ?? null;
 
         $order = Order::firstOrCreate(
-            ['user_id' => $user_id, 'is_completed' => false],
-            ['fullname' => null, 'address' => null, 'phone' => null, 'price' => null, 'shipping_fee' => null, 'discount' => null, 'total_price' => null]
+            [
+                'user_id' => $user_id,
+                'is_completed' => false,
+                'fullname' => null,
+                'address' => null,
+                'phone' => null,
+                'price' => null,
+                'shipping_fee' => null,
+                'discount' => null,
+                'total_price' => null,
+                'shipping_status' => null,
+                'created_date' => null,
+            ]
         );
 
         DetailOrder::where('order_id', $order->id)->delete();
@@ -110,6 +121,8 @@ class OrderController extends Controller
             'total_price' => $total,
             'status' => $request->input('order_note'),
             'is_completed' => true,
+            'shipping_status' => 'Đang giao',
+            'created_date' => now(),
         ]);
 
         if (Session::has('coupon')) {
@@ -162,7 +175,7 @@ class OrderController extends Controller
                     'discount' => $order->discount,
                     'total_price' => $order->total_price,
                     'status' => $order->status,
-                    'created_at' => $order->created_at,
+                    'created_date' => $order->created_date,
                     'name_product' => $item->name_product,
                     'path_img' => $images->path_img,
                     'option_cpu' => $item->option_cpu,
