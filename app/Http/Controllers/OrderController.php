@@ -154,7 +154,10 @@ class OrderController extends Controller
     public function history(): View
     {
         $user_id = Auth::id();
-        $orders = Order::where('user_id', $user_id)->where('is_completed', true)->get();
+        $orders = Order::where('user_id', $user_id)
+            ->where('is_completed', true)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         $details = [];
         $order_count = [];
