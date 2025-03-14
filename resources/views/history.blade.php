@@ -206,8 +206,10 @@
                             <div class="modal-footer order-modal__footer">
                                 <button type="button" class="btn btn-outline-primary order-modal__close-btn"
                                     data-bs-dismiss="modal">Quay lại</button>
-                                <button type="button" class="btn btn-outline-danger order-modal__download-btn">
-                                    Tạo lại đơn hàng</button>
+                                <a class="btn btn-outline-danger order-modal__download-btn"
+                                    href="{{ route('order.reorder', ['orderId' => $lables_detail['id']]) }}">
+                                    Tạo lại đơn hàng
+                                </a>
                             </div>
                         </div>
                     </div>

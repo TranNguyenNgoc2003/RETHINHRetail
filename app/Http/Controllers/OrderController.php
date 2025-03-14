@@ -117,6 +117,7 @@ class OrderController extends Controller
             if ($coupon) {
                 $coupon->decrement('count');
             }
+            Session::forget('coupon');
         }
 
         foreach ($cartItems as $item) {
@@ -191,6 +192,38 @@ class OrderController extends Controller
                 $existing_ids[] = $item['id'];
             }
         }
-        return view('history', compact('orders','details', 'lables_details'));
+        return view('history', compact('orders', 'details', 'lables_details'));
+    }
+
+    public function reorder($orderId)
+    {
+        $user_id = Auth::id();
+
+        $orderDetails = DetailOrder::where('order_id', $orderId)->get();
+
+        foreach ($orderDetails as $item) {
+            $cartItem = Cart::where('user_id', $user_id)
+                ->where('product_id', $item->product_id)
+                ->first();
+
+            if ($cartItem) {
+                $cartItem->count += $item->count;
+                $cartItem->save();
+            } else {
+                Cart::create([
+                    'name_product' => $item->name_product,
+                    'price_product' => $item->total_price / $item->count,
+                    'count' => $item->count,
+                    'user_id' => $user_id,
+                    'product_id' => $item->product_id,
+                    'option_cpu' => $item->option_cpu,
+                    'option_gpu' => $item->option_gpu,
+                    'option_ram' => $item->option_ram,
+                    'option_hard' => $item->option_hard,
+                ]);
+            }
+        }
+
+        return redirect()->route('cart')->with('success', 'Đã thêm lại sản phẩm vào giỏ hàng.');
     }
 }

@@ -42,6 +42,7 @@ Route::controller(OrderController::class)->group(function () {
     Route::get('/checkout/{orderId}', 'showCheckout')->name('checkout.show');
     Route::get('/complete/{orderId}', 'complete')->name('complete');
     Route::get('/history', 'history')->name('history');
+    Route::get('/reorder/{orderId}',  'reorder')->name('order.reorder');
 });
 
 Route::controller(ShippingController::class)->group(function () {
