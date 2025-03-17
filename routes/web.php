@@ -68,4 +68,5 @@ Route::controller(CustomerServiceController::class)->group(function () {
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/auth/profile', 'profile')->name('auth.profile');
     Route::post('/profile/update', 'updateProfile')->name('profile.update');
+    Route::post('/profile/delete/{id}', 'deleteProfile')->name('profile.delete');
 });

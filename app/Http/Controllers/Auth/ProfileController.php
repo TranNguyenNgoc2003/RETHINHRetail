@@ -40,4 +40,25 @@ class ProfileController extends Controller
         ]);
         return redirect()->back()->with('success', 'Cập nhật thông tin thành công!');
     }
+
+    public function deleteProfile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $fakeEmail = 'deleted_' . $user->id . '@example.com';
+
+        $user->update([
+            'email' => $fakeEmail,
+            'password' => null,
+            'phone' => null,
+            'social_id' => null,
+            'remember_token' => null,
+        ]);
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home')->with('success', 'Xóa tài khoản thành công!');
+    }
 }

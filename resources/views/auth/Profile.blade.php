@@ -8,7 +8,7 @@
         <div class="profile__info profile-edit">
             <div class="profile-edit__sidebar edit-sidebar">
                 <div class="edit-sidebar__item">
-                    <a href="{{ route('auth.profile') }}" class="edit-sidebar__item--link">
+                    <a href="#" class="edit-sidebar__item--link">
                         <i class="edit-sidebar__item--icon fas fa-pencil-alt"></i>
                         <span class="edit-sidebar__item--text">Cập nhật tài khoản</span>
                     </a>
@@ -18,27 +18,30 @@
                         <i class="edit-sidebar__item--icon fas fa-backspace"></i>
                         <span class="edit-sidebar__item--text">Xóa tài khoản</span>
                     </a>
-                    <div class="modal fade" id="modalId" tabindex="-1"
-                        data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId"
-                        aria-hidden="true">
-                        <div class="edit-sidebar__item--modal modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                    <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+                        role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                        <div class="edit-sidebar__item--modal modal-dialog modal-dialog-scrollable modal-dialog-centered"
+                            role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalTitleId">
-                                        Xác nhận xóa tài khoản
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Bạn có chắc chắn muốn xóa tài khoản? Các dữ liệu của bạn sẽ bị mất.</p>
-                                </div>
-                                <div class="modal-footer d-flex justify-content-between">
-                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
-                                        Hủy
-                                    </button>
-                                    <button type="button" class="btn btn-outline-danger">Xóa</button>
-                                </div>
+                                <form action="{{ route('profile.delete',['id' => Auth::user()->id]) }}" method="POST">
+                                    @csrf
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalTitleId">
+                                            Xác nhận xóa tài khoản
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Bạn có chắc chắn muốn xóa tài khoản? Các dữ liệu của bạn sẽ bị mất.</p>
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-between">
+                                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                                            Hủy
+                                        </button>
+                                        <button type="submit" class="btn btn-outline-danger">Xóa</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -90,7 +93,7 @@
                     </div>
                     <div class="profile-edit__group">
                         <label for="password" class="profile-edit__label">Mật khẩu</label>
-                        <input type="password" class="profile-edit__input form-control" id="password" name="password"  
+                        <input type="password" class="profile-edit__input form-control" id="password" name="password"
                             placeholder="Nhập mật khẩu">
                     </div>
                     <div class="profile-edit__group">
