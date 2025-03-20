@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/js/app.js'])
-
 </head>
 
 <body class="page">
@@ -29,7 +28,8 @@
 
                         <ul class="header__main--nav list">
                             <li class="list__search-container search">
-                                <input type="text" class="form-control search__input" placeholder="Tìm kiếm...">
+                                <input type="text" id="search-input" class="form-control search__input"
+                                    placeholder="Tìm kiếm...">
                                 <i class="fas fa-search search__icon"></i>
                             </li>
                             <li class="list__scroll-to-section item"><a class="item__link"
@@ -59,7 +59,8 @@
                                             href="#">Tin công nghệ</a></li>
                                 </ul>
                             </li>
-                            <li class="list__scroll-to-section item"><a class="item__link" href="{{ route('about') }}">Liên hệ</a>
+                            <li class="list__scroll-to-section item"><a class="item__link"
+                                    href="{{ route('about') }}">Liên hệ</a>
                             </li>
                             <li class="list__submenu item">
                                 <a class="item__link" href="#">Cửa hàng</a>
@@ -158,5 +159,19 @@
         </div>
     </footer>
 </body>
+
+<script>
+    document.getElementById("search-input").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+
+            let query = this.value.trim();
+            if (query !== "") {
+                window.location.href = "/search?q=" + encodeURIComponent(
+                    query);
+            }
+        }
+    });
+</script>
 
 </html>

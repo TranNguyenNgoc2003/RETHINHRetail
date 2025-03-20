@@ -26,13 +26,14 @@ Route::prefix('social')->group(function () {
 });
 
 Route::controller(ProductController::class)->group(function () {
-    Route::get('/home',  'home')->name('home');
-    Route::get('/product/{id}',  'details')->name('product.detail');
+    Route::get('/home', 'home')->name('home');
+    Route::get('/product/{id}', 'details')->name('product.detail');
+    Route::get('/search', 'search')->name('search');
 });
 
 Route::controller(CartController::class)->group(function () {
-    Route::get('/cart',  'cart')->name('cart');
-    Route::post('/addToCart',  'addToCart')->name('addToCart');
+    Route::get('/cart', 'cart')->name('cart');
+    Route::post('/addToCart', 'addToCart')->name('addToCart');
     Route::post('/cart/update', 'updateCart')->name('cart.update');
     Route::post('/cart/coupon', 'applyCoupon')->name('cart.coupon');
 });
@@ -43,7 +44,7 @@ Route::controller(OrderController::class)->group(function () {
     Route::get('/checkout/{orderId}', 'showCheckout')->name('checkout.show');
     Route::get('/complete/{orderId}', 'complete')->name('complete');
     Route::get('/history', 'history')->name('history');
-    Route::get('/reorder/{orderId}',  'reorder')->name('order.reorder');
+    Route::get('/reorder/{orderId}', 'reorder')->name('order.reorder');
 });
 
 Route::controller(ShippingController::class)->group(function () {

@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $table = 'product';
 
@@ -55,5 +56,14 @@ class Product extends Model
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'name_product' => $this->name_product,
+            'category' => $this->category,
+            'Producer' => $this->Producer,
+        ];
     }
 }
