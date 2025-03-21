@@ -11,7 +11,7 @@
                                 <h4 class="left__thumb--inner-title">Điện thoại</h4>
                                 <span class="left__thumb--inner-description">Công nghệ tiên tiến - Hiệu suất vượt trội</span>
                                 <div class="left__thumb--inner-button">
-                                    <a href="#">Xem ngay</a>
+                                    <a href="{{ route('category', ['category' => 'Điện thoại']) }}">Xem ngay</a>
                                 </div>
                             </div>
                             <img class="left__thumb--image" src="{{ asset('images/banner_smartphone.png') }}"
@@ -36,7 +36,7 @@
                                                 <p class="hover__inner--description">Khám phá những mẫu máy tính bảng mới
                                                     nhất với hiệu năng mạnh mẽ.</p>
                                                 <div class="hover__inner--button">
-                                                    <a href="#">Tìm hiểu thêm</a>
+                                                    <a href="{{ route('category', ['category' => 'Máy tính bảng']) }}">Tìm hiểu thêm</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -58,7 +58,7 @@
                                                 <p class="hover__inner--description">Nhận thông báo, theo dõi sức khỏe và
                                                     nâng cao trải nghiệm sống.</p>
                                                 <div class="hover__inner--button">
-                                                    <a href="#">Tìm hiểu thêm</a>
+                                                    <a href="{{ route('category', ['category' => 'Đồng hồ thông minh']) }}">Tìm hiểu thêm</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -80,7 +80,7 @@
                                                 <p class="hover__inner--description">Hiệu suất mạnh mẽ, phù hợp cho công
                                                     việc và giải trí.</p>
                                                 <div class="hover__inner--button">
-                                                    <a href="#">Tìm hiểu thêm</a>
+                                                    <a href="{{ route('category', ['category' => 'PC & Màn hình']) }}">Tìm hiểu thêm</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,7 +101,7 @@
                                                 <p class="hover__inner--description">Bảo vệ thiết bị và nâng cao trải nghiệm
                                                     sử dụng.</p>
                                                 <div class="hover__inner--button">
-                                                    <a href="#">Tìm hiểu thêm</a>
+                                                    <a href="{{ route('category', ['category' => 'Phụ kiện']) }}">Tìm hiểu thêm</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,7 +126,7 @@
     <div class="container product">
         <h3 class="product__title">ĐIỆN THOẠI</h3>
         <div class="row product__row">
-            @foreach ($products->where('category', 'Smartphone')->sortByDesc('rating')->unique('name_product')->take(8) as $product)
+            @foreach ($products->where('category', 'Điện thoại')->sortByDesc('rating')->unique('name_product')->take(8) as $product)
                 @include('components.product', ['products' => $products])
             @endforeach
         </div>
@@ -142,7 +142,7 @@
     <div class="container product">
         <h3 class="product__title">MÁY TÍNH BẢNG</h3>
         <div class="row product__row">
-            @foreach ($products->where('category', 'Tablet')->sortByDesc('rating')->unique('name_product')->take(8) as $product)
+            @foreach ($products->where('category', 'Máy tính bảng')->sortByDesc('rating')->unique('name_product')->take(8) as $product)
                 @include('components.product', ['products' => $products])
             @endforeach
         </div>

@@ -28,6 +28,7 @@ Route::prefix('social')->group(function () {
 Route::controller(ProductController::class)->group(function () {
     Route::get('/home', 'home')->name('home');
     Route::get('/product/{id}', 'details')->name('product.detail');
+    Route::get('/category/{category}', 'category')->name('category');
     Route::get('/search', 'search')->name('search');
 });
 
@@ -70,4 +71,10 @@ Route::controller(ProfileController::class)->group(function () {
     Route::get('/auth/profile', 'profile')->name('auth.profile');
     Route::post('/profile/update', 'updateProfile')->name('profile.update');
     Route::post('/profile/delete/{id}', 'deleteProfile')->name('profile.delete');
+    Route::get('/auth/address', 'address')->name('auth.address');
+    Route::get('/address/newAddress', 'newAddress')->name('address.newAddress');
+    Route::post('/address/add', 'addAddress')->name('address.add');
+    Route::get('/address/{id}/edit', 'editAddress')->name('address.editAddress');
+    Route::put('/address/update/{id}', 'updateAddress')->name('address.update');
+    Route::get('/address/delete/{id}', 'deleteAddress')->name('address.delete');
 });

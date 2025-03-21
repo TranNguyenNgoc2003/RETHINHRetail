@@ -2475,12 +2475,43 @@ profile
                 width: 40px;
             }
 
-            &--modal{
-                button{
+            &--modal {
+                button {
                     transition: 0.4s;
                     width: 100px;
                 }
             }
+        }
+    }
+}
+
+/* 
+---------------------------------------------
+Category
+--------------------------------------------- 
+*/
+
+.category {
+    margin-top: 9%;
+    margin-bottom: 10%;
+
+    &__title {
+        text-transform: uppercase;
+        // font-weight: 900;
+        border-left: 10px solid #fec500;
+        padding-left: 10px;
+        margin-bottom: 30px
+    }
+
+    &__product {
+        &--empty {
+            background-color: #fff3cd;
+            color: #856404;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ffeeba;
         }
     }
 }

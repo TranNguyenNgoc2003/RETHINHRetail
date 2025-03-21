@@ -38,21 +38,21 @@
                                 <a class="item__link" href="#">Danh mục</a>
                                 <ul class="item__dropdown">
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">Điện thoại</a></li>
+                                            href="{{ route('category', ['category' => 'Điện thoại']) }}">Điện thoại</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">Laptop</a></li>
+                                            href="{{ route('category', ['category' => 'Laptop']) }}">Laptop</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">Âm thanh</a></li>
+                                            href="{{ route('category', ['category' => 'Âm thanh']) }}">Âm thanh</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">Đồng hồ, Camera</a></li>
+                                            href="{{ route('category', ['category' => 'Đồng hồ, Camera']) }}">Đồng hồ, Camera</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">Đồ gia dụng</a></li>
+                                            href="{{ route('category', ['category' => 'Đồ gia dụng']) }}">Đồ gia dụng</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">Phụ kiện</a></li>
+                                            href="{{ route('category', ['category' => 'Phụ kiện']) }}">Phụ kiện</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">PC, Màn hình, Máy in</a></li>
+                                            href="{{ route('category', ['category' => 'PC, Màn hình, Máy in']) }}">PC, Màn hình, Máy in</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                            href="#">Tivi</a></li>
+                                            href="{{ route('category', ['category' => 'Tivi']) }}">Tivi</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
                                             href="#">Khuyến mãi</a></li>
                                     <li class="item__dropdown--title"><a class="item__dropdown--title-link"
@@ -85,7 +85,7 @@
                                         <li class="item__dropdown--title"><a class="item__dropdown--title-link"
                                                 href="{{ route('auth.profile') }}">Thông tin cá nhân</a></li>
                                         <li class="item__dropdown--title"><a class="item__dropdown--title-link"
-                                                href="#">Địa chỉ nhận hàng</a></li>
+                                                href="{{ route('auth.address') }}">Địa chỉ nhận hàng</a></li>
                                         <li class="item__dropdown--title"><a class="item__dropdown--title-link"
                                                 href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
@@ -128,12 +128,12 @@
                 <div class="col-lg-3 column">
                     <h4 class="column__item--title">Danh mục sản phẩm</h4>
                     <ul class="column__item--list">
-                        <li><a href="#">Điện thoại</a></li>
-                        <li><a href="#">Máy tính bảng</a></li>
-                        <li><a href="#">Laptop</a></li>
-                        <li><a href="#">PC, Màn hình</a></li>
-                        <li><a href="#">Đồng hồ thông minh</a></li>
-                        <li><a href="#">Phụ kiện</a></li>
+                        <li><a href="{{ route('category', ['category' => 'Điện thoại']) }}">Điện thoại</a></li>
+                        <li><a href="{{ route('category', ['category' => 'Máy tính bảng']) }}">Máy tính bảng</a></li>
+                        <li><a href="{{ route('category', ['category' => 'Laptop']) }}">Laptop</a></li>
+                        <li><a href="{{ route('category', ['category' => 'PC, Màn hình']) }}">PC, Màn hình</a></li>
+                        <li><a href="{{ route('category', ['category' => 'Đồng hồ thông minh']) }}">Đồng hồ thông minh</a></li>
+                        <li><a href="{{ route('category', ['category' => 'Phụ kiện']) }}">Phụ kiện</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 column">
@@ -151,7 +151,7 @@
                         <li><a href="#">Trung tâm trợ giúp</a></li>
                         <li><a href="#">Câu hỏi thường gặp</a></li>
                         <li><a href="#">Theo dõi đơn hàng</a></li>
-                        <li><a href="#">Liên hệ hỗ trợ</a></li>
+                        <li><a href="{{ route('about') }}">Liên hệ hỗ trợ</a></li>
                     </ul>
                 </div>
 
