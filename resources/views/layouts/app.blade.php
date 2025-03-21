@@ -128,12 +128,12 @@
                 <div class="col-lg-3 column">
                     <h4 class="column__item--title">Danh mục sản phẩm</h4>
                     <ul class="column__item--list">
-                        <li><a href="#">Điện thoại</a></li>
-                        <li><a href="#">Máy tính bảng</a></li>
-                        <li><a href="#">Laptop</a></li>
-                        <li><a href="#">PC, Màn hình</a></li>
-                        <li><a href="#">Đồng hồ thông minh</a></li>
-                        <li><a href="#">Phụ kiện</a></li>
+                        <li><a href="{{ route('category', ['category' => 'Điện thoại']) }}">Điện thoại</a></li>
+                        <li><a href="{{ route('category', ['category' => 'Máy tính bảng']) }}">Máy tính bảng</a></li>
+                        <li><a href="{{ route('category', ['category' => 'Laptop']) }}">Laptop</a></li>
+                        <li><a href="{{ route('category', ['category' => 'PC, Màn hình']) }}">PC, Màn hình</a></li>
+                        <li><a href="{{ route('category', ['category' => 'Đồng hồ thông minh']) }}">Đồng hồ thông minh</a></li>
+                        <li><a href="{{ route('category', ['category' => 'Phụ kiện']) }}">Phụ kiện</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 column">
@@ -151,7 +151,7 @@
                         <li><a href="#">Trung tâm trợ giúp</a></li>
                         <li><a href="#">Câu hỏi thường gặp</a></li>
                         <li><a href="#">Theo dõi đơn hàng</a></li>
-                        <li><a href="#">Liên hệ hỗ trợ</a></li>
+                        <li><a href="{{ route('about') }}">Liên hệ hỗ trợ</a></li>
                     </ul>
                 </div>
 
