@@ -126,7 +126,7 @@
     <div class="container product">
         <h3 class="product__title">ĐIỆN THOẠI</h3>
         <div class="row product__row">
-            @foreach ($products->where('category', 'Smartphone')->sortByDesc('rating')->unique('name_product')->take(8) as $product)
+            @foreach ($products->where('category', 'Điện thoại')->sortByDesc('rating')->unique('name_product')->take(8) as $product)
                 @include('components.product', ['products' => $products])
             @endforeach
         </div>

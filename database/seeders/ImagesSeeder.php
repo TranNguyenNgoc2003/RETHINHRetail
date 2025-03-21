@@ -435,6 +435,25 @@ class ImagesSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+            // Samsung Galaxy S21 Ultra
+            [
+                'path_img' => 'samsung-galaxy-s24-ultra-1.jpg',
+                'product_id' => 24,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'path_img' => 'samsung-galaxy-s24-ultra-2.jpg',
+                'product_id' => 24,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'path_img' => 'samsung-galaxy-s24-ultra-3.jpg',
+                'product_id' => 24,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

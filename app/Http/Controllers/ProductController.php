@@ -25,6 +25,15 @@ class ProductController extends Controller
         return view('details', compact('product', 'relatedProducts', 'promotion'));
     }
 
+    public function category($category)
+    {
+        $products = Product::where('category', $category)->get();
+
+        $title = $category;
+
+        return view('category', compact('products', 'title'));
+    }
+
     public function search(Request $request)
     {
         $query = $request->input('q'); 
