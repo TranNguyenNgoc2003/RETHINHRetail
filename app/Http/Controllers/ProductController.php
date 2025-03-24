@@ -33,19 +33,4 @@ class ProductController extends Controller
 
         return view('category', compact('products', 'title'));
     }
-
-    // public function search(Request $request)
-    // {
-    //     $query = $request->input('q'); 
-
-    //     if (!$query) {
-    //         return redirect()->back()->with('error', 'Vui lòng nhập từ khóa tìm kiếm.');
-    //     }
-        
-    //     // dump($query, Product::search($query)); exit;
-
-    //     $results = Product::search($query)->get();
-
-    //     return view('search_results', compact('results', 'query'));
-    // }
 }

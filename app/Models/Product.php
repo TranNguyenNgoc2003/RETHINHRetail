@@ -8,7 +8,6 @@ use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
-    // use HasFactory, Searchable;
     use HasFactory;
 
     protected $table = 'product';
@@ -58,13 +57,4 @@ class Product extends Model
     {
         return $this->hasMany(Image::class);
     }
-
-    // public function toSearchableArray()
-    // {
-    //     return [
-    //         'name_product' => $this->name_product,
-    //         'category' => $this->category,
-    //         'Producer' => $this->Producer,
-    //     ];
-    // }
 }
