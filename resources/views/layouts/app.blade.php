@@ -164,4 +164,18 @@
     </footer>
 </body>
 
+<script>
+    document.getElementById("search-input").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+
+            let query = this.value.trim();
+            if (query !== "") {
+                window.location.href = "/search?q=" + encodeURIComponent(
+                    query);
+            }
+        }
+    });
+</script>
+
 </html>
