@@ -2515,3 +2515,31 @@ Category
         }
     }
 }
+
+/* 
+---------------------------------------------
+Search Results
+--------------------------------------------- 
+*/
+.search-results {
+    margin-top: 9%;
+    margin-bottom: 10%;
+    &__title {
+        text-transform: uppercase;
+        font-weight: bold;
+        border-left: 10px solid #fec500;
+        padding-left: 10px;
+        margin-bottom: 30px
+    }
+
+    &__empty {
+        font-size: 18px;
+        color: #777;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}

@@ -33,4 +33,20 @@ class ProductController extends Controller
 
         return view('category', compact('products', 'title'));
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->query('q');
+
+        if (!$query) {
+            return redirect()->route('home')->with('error', 'Vui lòng nhập từ khóa tìm kiếm.');
+        }
+
+        $products = Product::where('name_product', 'like', '%' . $query . '%')
+            ->orWhere('Producer', 'like', '%' . $query . '%')
+            ->orWhere('category', 'like', '%' . $query . '%')
+            ->get();
+
+        return view('search_results', compact('products', 'query'));
+    }
 }
