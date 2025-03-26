@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Delivery::class);
     }
+
+    public function permission()
+    {
+        return $this->belongsTo(Permission::class, 'permission_id');
+    }
 }

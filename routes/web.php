@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\SocialLoginCallback;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CustomerServiceController;
+use App\Http\Controllers\Manager\LoginController;
+use App\Http\Controllers\Manager\ManageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShippingController;
@@ -77,4 +79,13 @@ Route::controller(ProfileController::class)->group(function () {
     Route::get('/address/{id}/edit', 'editAddress')->name('address.editAddress');
     Route::put('/address/update/{id}', 'updateAddress')->name('address.update');
     Route::get('/address/delete/{id}', 'deleteAddress')->name('address.delete');
+});
+
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/manager/login', 'login')->name('manager.login');
+    Route::post('/manager/loginAuth', 'loginAuth')->name('manager.loginAuth');
+});
+
+Route::controller(ManageController::class)->group(function () {
+    Route::get('/manager', 'dashboard')->name('manager');
 });
