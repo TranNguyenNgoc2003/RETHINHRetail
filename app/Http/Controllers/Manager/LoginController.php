@@ -14,7 +14,7 @@ class LoginController extends Controller
     {
         return view('manager.login');
     }
-    
+
     public function loginAuth(Request $request)
     {
         $credentials = $request->validate([
@@ -25,7 +25,7 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user && $user->permission_id == 2) {
-            if (Auth::attempt($credentials)) {
+            if (Auth::guard('manager')->attempt($credentials)) {
                 $request->session()->regenerate();
                 return redirect()->route('manager')->with('success', 'Đăng nhập thành công!');
             } else {

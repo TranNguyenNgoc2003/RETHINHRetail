@@ -18,11 +18,11 @@ class LoginAndRegisterController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('guest', except:['home', 'logout']),
-            new Middleware('auth', only:['home', 'logout']),
+            new Middleware('guest', except: ['home', 'logout']),
+            new Middleware('auth', only: ['home', 'logout']),
         ];
     }
-    
+
     public function register(): View
     {
         return view('auth.register');
@@ -42,33 +42,40 @@ class LoginAndRegisterController extends Controller implements HasMiddleware
             'password' => Hash::make($request->password)
         ]);
 
-        $credentials = $request->only('email','password');
-        Auth::attempt($credentials);
+        Auth::guard('web')->login($user);
+
         $request->session()->regenerate();
+
         return redirect()->route('home');
     }
+
 
     public function login(): View
     {
         return view('auth.login');
-    }  
+    }
 
-    public function loginAuth(Request $request): RedirectResponse
+    public function loginAuth(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        if (Auth::attempt($credentials))
-        {
-            $request->session()->regenerate();
-            return redirect()->route('home');
+
+        $user = User::where('email', $request->email)->first();
+
+        if ($user && $user->permission_id == 1) {
+            if (Auth::guard('web')->attempt($credentials)) {
+                $request->session()->regenerate();
+                return redirect()->route('home');
+            }
         }
 
         return back()->withErrors([
-            'email' => 'Your provided credentials do not match in our records',
+            'email' => 'Thông tin đăng nhập không chính xác',
         ])->onlyInput('email');
     }
+
 
     public function logout(Request $request): RedirectResponse
     {
@@ -77,5 +84,4 @@ class LoginAndRegisterController extends Controller implements HasMiddleware
         $request->session()->regenerateToken();
         return redirect()->route('home');
     }
-
 }
