@@ -27,7 +27,7 @@
                 @endif
                 <div class="product__card--content-priceInfo priceInfo">
                     <span class="priceInfo__priceCurrent">
-                        {{ number_format(round($product->price - ($product->price / 100) * $product->discount, -5), 0, ',', '.') }}
+                        {{ number_format(round($product->price - ($product->price / 100) * $product->discount, -4), 0, ',', '.') }}
                         VND
                     </span>
                     @if ($product->price && $product->discount)

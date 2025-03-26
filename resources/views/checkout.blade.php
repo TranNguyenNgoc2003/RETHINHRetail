@@ -126,7 +126,7 @@
                             <div class="checkout-summary__item">
                                 <span class="checkout-summary__item--text">Giá tiền:</span>
                                 <span class="checkout-summary__item--quantity">
-                                    {{ number_format(round($item->cart->product->price - ($item->cart->product->price / 100) * $item->cart->product->discount, -5), 0, ',', '.') }}
+                                    {{ number_format(round($item->cart->product->price - ($item->cart->product->price / 100) * $item->cart->product->discount, -4), 0, ',', '.') }}
                                     VND x {{ $item->cart->count }}
                                 </span>
                             </div>

@@ -54,7 +54,7 @@ class CartController extends Controller
         } else {
             Cart::create([
                 'name_product' => $product->name_product,
-                'price_product' => round($product->price - ($product->price / 100) * $product->discount, -5),
+                'price_product' => round($product->price - ($product->price / 100) * $product->discount, -4),
                 'count' => 1,
                 'user_id' => $user_id,
                 'product_id' => $product->id,
