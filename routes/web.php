@@ -46,6 +46,8 @@ Route::controller(OrderController::class)->group(function () {
     Route::get('/complete/{orderId}', 'complete')->name('complete');
     Route::get('/history', 'history')->name('history');
     Route::get('/reorder/{orderId}', 'reorder')->name('order.reorder');
+    Route::post('/checkout/vnpay/{orderId}','createVnpayPayment')->name('checkout.vnpay');
+    Route::get('/vnpay-return', 'vnpayReturn')->name('vnpay.return');
 });
 
 Route::controller(ShippingController::class)->group(function () {
