@@ -251,8 +251,6 @@ class OrderController extends Controller
         $total = $subtotal + $shipping_fee - $discount;
         $cartItems = Cart::where('user_id', $user_id)->get();
         
-        // dump($secureHash,$vnp_SecureHash); exit;
-
         if ($secureHash === $vnp_SecureHash) {
 
             if ($request->input('vnp_ResponseCode') == "00") {
