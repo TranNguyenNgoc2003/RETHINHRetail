@@ -162,7 +162,7 @@ class OrderController extends Controller
         $vnp_Url = env('VNP_URL');
         $vnp_ReturnUrl = env('VNP_RETURN_URL');
 
-        $vnp_TxnRef = $order->id;
+        $vnp_TxnRef = $order->id . '_' . time();
         $vnp_OrderInfo = "Thanh toán đơn hàng";
         $vnp_OrderType =  "billpayment";
         $vnp_Amount = (int) ($total * 100);
