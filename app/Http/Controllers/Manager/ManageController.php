@@ -14,7 +14,7 @@ class ManageController extends Controller
     public function dashboard(): View
     {
         $now = Carbon::now();
-        
+
         $monthly_income = Order::whereMonth('created_date', $now->month)
             ->whereYear('created_date', $now->year)
             ->sum('total_price');
@@ -28,6 +28,11 @@ class ManageController extends Controller
 
         $progress = $total_services > 0 ? round(($completed_service / $total_services) * 100) : 0;
 
-        return view('manager.dashboard', compact('monthly_income','yearly_income','pending_service', 'progress'));
+        $recent_orders = Order::where('is_completed', true)
+            ->orderBy('created_at', 'desc')
+            ->take(9)
+            ->get();
+
+        return view('manager.dashboard', compact('monthly_income', 'yearly_income', 'pending_service', 'progress', 'recent_orders'));
     }
 }

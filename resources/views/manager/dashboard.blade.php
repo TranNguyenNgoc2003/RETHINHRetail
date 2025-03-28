@@ -13,10 +13,11 @@
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
+                        <div class="col">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Thu nhập (Hàng tháng)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($monthly_income, 0, ',', '.') }} VNĐ</div>
+                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                {{ number_format($monthly_income, 0, ',', '.') }} VNĐ</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -30,10 +31,11 @@
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
+                        <div class="col">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Thu nhập (Hàng năm)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($yearly_income, 0, ',', '.') }} VNĐ</div>
+                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                {{ number_format($yearly_income, 0, ',', '.') }} VNĐ</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -52,12 +54,13 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $progress }}%</div>
+                                    <div class="h6 mb-0 mr-3 font-weight-bold text-gray-800">{{ $progress }}%</div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: {{ $progress }}%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar"
+                                            style="width: {{ $progress }}%" aria-valuenow="50" aria-valuemin="0"
+                                            aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +80,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Yêu cầu đang chờ xử lý</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $pending_service }}</div>
+                            <div class="h6 mb-0 font-weight-bold text-gray-800">{{ $pending_service }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -96,7 +99,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Tổng quan thu nhập</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Đơn hàng gần đây</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -116,7 +119,23 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
+                        <div class="list-order">
+                            <span class="list-order__id font-weight-bold">Mã đơn</span>
+                            <span class="list-order__name font-weight-bold">Tên khách hàng</span>
+                            <span class="list-order__price font-weight-bold">Giá trị đơn hàng</span>
+                            <span class="list-order__time font-weight-bold">Thời gian đặt</span>
+                            <span class="list-order__status font-weight-bold">Trạng thái</span>
+                        </div>
+                        @foreach ($recent_orders as $recent_order)
+                            <a href="" class="list-order">
+                                <span class="list-order__id">{{ $recent_order->id }}</span>
+                                <span class="list-order__name">{{ $recent_order->fullname }}</span>
+                                <span class="list-order__price">{{ number_format($recent_order->total_price, 0, ',', '.') }}
+                                    VNĐ</span>
+                                <span class="list-order__time">{{ $recent_order->created_date }}</span>
+                                <span class="list-order__status">{{ $recent_order->shipping_status }}</span>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
