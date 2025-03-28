@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('phone');
             $table->string('email')->nullable();
-            $table->dateTime('start_time')->nullable();
+            $table->dateTime('start_time')->useCurrent();
             $table->dateTime('end_time')->nullable();
             $table->string('note')->nullable();
             $table->unsignedInteger('spworker_id')->default(2);

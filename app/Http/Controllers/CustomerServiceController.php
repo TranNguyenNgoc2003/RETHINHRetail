@@ -20,6 +20,7 @@ class CustomerServiceController extends Controller
             'phone' => 'required|string',
             'email' => 'required|email',
             'service_name' => 'required|string',
+            'start_time' => now(),
             'note' => 'nullable|string',
         ]);
 
