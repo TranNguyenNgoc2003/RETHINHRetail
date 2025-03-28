@@ -1,0 +1,36 @@
+.list-order {
+    // display: block;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    &:hover {
+        // text-decoration: none;
+        color: black;
+    }
+
+    &__id {
+        width: 10%;
+        text-align: center;
+    }
+
+    &__name {
+        width: 25%;
+        text-align: center;
+    }
+
+    &__price {
+        width: 20%;
+        text-align: center;
+    }
+
+    &__time {
+        width: 20%;
+        text-align: center;
+    }
+
+    &__status {
+        width: 15%;
+        text-align: center;
+    }
+}

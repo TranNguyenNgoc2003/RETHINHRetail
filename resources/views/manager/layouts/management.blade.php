@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="{{ asset('css/style-admin.min.css') }}" rel="stylesheet">
+    @vite(['resources/js/app.js'])
 </head>
 
 <body id="page-top">
@@ -45,7 +46,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Tài khoản & Đơn hàng
             </div>
 
             <!-- Nav Item - Components Collapse Menu -->
@@ -53,15 +54,17 @@
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                     data-bs-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Quản lý tài khoản</span>
                     <i class="fas fa-angle-down float-right" style="font-size: 18px; margin-top: 5px"></i>
                 </a>
                 <div id="collapseComponents" class="collapse" aria-labelledby="headingComponents"
                     data-bs-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">Chức năng chính:</h6>
+                        <a class="collapse-item" href="#">Quản lý người dùng</a>
+                        <a class="collapse-item" href="#">Thêm tài khoản mới</a>
+                        <a class="collapse-item" href="#">Quản lý quản trị viên</a>
+
                     </div>
                 </div>
             </li>
@@ -70,18 +73,18 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                     data-bs-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Lịch sử đơn hàng</span>
                     <i class="fas fa-angle-down float-right" style="font-size: 18px; margin-top: 5px"></i>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-bs-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <h6 class="collapse-header">Thông tin đơn hàng:</h6>
+                        <a class="collapse-item" href="">Đơn hàng đang xử lý</a>
+                        <a class="collapse-item" href="">Đơn hàng đã giao</a>
+                        <a class="collapse-item" href="">Đơn hàng đã hủy</a>
+                        <a class="collapse-item" href="">Tất cả đơn hàng</a>
                     </div>
                 </div>
             </li>
@@ -178,7 +181,7 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                                aria-labelledby="userDropdown" style=" margin-left: -50px ">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Hồ sơ
                                 </a>
