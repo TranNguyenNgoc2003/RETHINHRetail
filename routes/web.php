@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\SocialLoginCallback;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CustomerServiceController;
-use App\Http\Controllers\Manager\LoginController;
+use App\Http\Controllers\Manager\AccountController;
 use App\Http\Controllers\Manager\ManageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -83,9 +83,10 @@ Route::controller(ProfileController::class)->group(function () {
     Route::get('/address/delete/{id}', 'deleteAddress')->name('address.delete');
 });
 
-Route::controller(LoginController::class)->group(function () {
+Route::controller(AccountController::class)->group(function () {
     Route::get('/manager/login', 'login')->name('manager.login');
     Route::post('/manager/loginAuth', 'loginAuth')->name('manager.loginAuth');
+    Route::post('/manager/logout', 'logout')->name('manager.logout');
 });
 
 Route::controller(ManageController::class)->group(function () {
