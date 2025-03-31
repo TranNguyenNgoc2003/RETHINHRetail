@@ -39,10 +39,11 @@ class ManageController extends Controller
 
     public function getUsers(): View
     {
+        $pagination = 25;
         $users = User::where('permission_id', '1')
             ->orderBy('id', 'desc')
-            ->paginate(25);
+            ->paginate($pagination);
 
-        return view('manager.users', compact('users'));
+        return view('manager.users', compact('users', 'pagination'));
     }
 }

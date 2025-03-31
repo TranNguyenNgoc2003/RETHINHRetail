@@ -22,8 +22,8 @@
         <div class="list-users__table card shadow">
             @if (!$users->isEmpty())
                 <ul class="table-users table-users__header">
-                    <li class="table-users__stt">
-                        STT
+                    <li class="table-users__id">
+                        ID
                     </li>
                     <li class="table-users__name">
                         Họ tên
@@ -35,10 +35,10 @@
                         Ngày tạo
                     </li>
                 </ul>
-                @foreach ($users->take(25) as $user)
+                @foreach ($users->take($pagination) as $user)
                     <a href="#" class="list-users__link">
                         <ul class="table-users">
-                            <li class="table-users__stt">
+                            <li class="table-users__id">
                                 {{ $user->id }}
                             </li>
                             <li class="table-users__name">
@@ -55,7 +55,6 @@
                 @endforeach
                 <nav aria-label="Page navigation" class="d-flex justify-content-end">
                     <ul class="pagination">
-
                         @if ($users->onFirstPage())
                             <li class="page-item disabled">
                                 <span class="page-link">&laquo;</span>
