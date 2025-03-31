@@ -1,3 +1,8 @@
+/* 
+---------------------------------------------
+List Order
+--------------------------------------------- 
+*/
 .list-order {
     // display: block;
     color: black;
@@ -32,5 +37,66 @@
     &__status {
         width: 15%;
         text-align: center;
+    }
+}
+
+
+/* 
+---------------------------------------------
+List User
+--------------------------------------------- 
+*/
+.list-users {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__search {
+        form {
+            border: 1px solid black;
+            border-radius: 6px;
+        }
+    }
+
+    &__table {
+        background-color: white;
+    }
+
+    &__link {
+        color: black;
+
+        &:hover {
+            // text-decoration: none;
+            color: black;
+        }
+    }
+}
+
+.table-users {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 10px 0px 5px 0px;
+
+    &__header {
+        border-bottom: 1px solid #ccc;
+        font-weight: bold;
+    }
+
+    &__id {
+        width: 5%;
+    }
+
+    &__name {
+        width: 20%;
+    }
+
+    &__email {
+        width: 35%;
+    }
+
+    &__date {
+        width: 25%;
     }
 }

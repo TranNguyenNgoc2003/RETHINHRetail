@@ -26,7 +26,7 @@
         <ul class="navbar-nav bg-black sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('manager') }}">
                 <img style="width: 120px;" src="{{ asset('images/Rethink-Logo-white.png') }}">
             </a>
 
