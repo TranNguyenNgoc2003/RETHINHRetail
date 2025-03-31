@@ -36,7 +36,7 @@
                     </li>
                 </ul>
                 @foreach ($users->take($pagination) as $user)
-                    <a href="#" class="list-users__link">
+                    <a href=" {{ route('manager.infoEdit', ['id' => $user->id]) }}" class="list-users__link">
                         <ul class="table-users">
                             <li class="table-users__id">
                                 {{ $user->id }}

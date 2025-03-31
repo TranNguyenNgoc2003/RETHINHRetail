@@ -56,4 +56,10 @@ class ManageController extends Controller
 
         return view('manager.admins', compact('users', 'pagination'));
     }
+
+    public function infoEdit($id)
+    {
+        $user = User::find($id);
+        return view('manager.infoEdit', compact('user'));
+    }
 }

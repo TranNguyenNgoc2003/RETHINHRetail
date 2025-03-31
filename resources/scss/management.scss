@@ -100,3 +100,144 @@ List User
         width: 25%;
     }
 }
+
+/* 
+---------------------------------------------
+Users edit
+--------------------------------------------- 
+*/
+.users-edit {
+    margin-bottom: 2%;
+    &__header {
+        margin-bottom: 10px;
+    }
+    &__content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    &__avatar {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        &--edit {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            overflow: hidden;
+        }
+
+        &--edit:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    }
+
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5%;
+    }
+
+    &__input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+    }
+
+    &__button {
+        margin: 15px auto;
+        width: 40%;
+        padding: 10px 20px;
+    }
+
+    .form-select {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .edit-sidebar {
+        height: fit-content;
+        padding-bottom: 60px;
+
+        &__item {
+            margin-top: 30px;
+            margin-left: 20px;
+            font-size: 16px;
+
+            &--link {
+                text-decoration: none;
+                color: black;
+                transition: 0.4s;
+
+                &:hover {
+                    margin-left: 7px;
+                }
+            }
+
+            &--icon {
+                width: 40px;
+            }
+
+            &--modal {
+                button {
+                    transition: 0.4s;
+                    width: 100px;
+                }
+            }
+        }
+    }
+}
