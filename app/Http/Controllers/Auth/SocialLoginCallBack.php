@@ -23,13 +23,9 @@ class SocialLoginCallback extends Controller
             ]
         );
 
-        if ($user->permission_id == 1) {
-            Auth::guard('web')->login($user, true);
-            session(['login_via_social' => true]); 
+        Auth::guard('web')->login($user, true);
+        session(['login_via_social' => true]);
 
-            return redirect()->route('home')->with('success', 'Đăng nhập thành công!');
-        }
-
-        return redirect()->route('login')->with('error', 'Bạn không thể đăng nhập bằng mạng xã hội.');
+        return redirect()->route('home')->with('success', 'Đăng nhập thành công!');
     }
 }
