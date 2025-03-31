@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Manager;
 use App\Http\Controllers\Controller;
 use App\Models\CustomerService;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
@@ -34,5 +35,25 @@ class ManageController extends Controller
             ->get();
 
         return view('manager.dashboard', compact('monthly_income', 'yearly_income', 'pending_service', 'progress', 'recent_orders'));
+    }
+
+    public function getUsers(): View
+    {
+        $pagination = 25;
+        $users = User::where('permission_id', '1')
+            ->orderBy('id', 'desc')
+            ->paginate($pagination);
+
+        return view('manager.users', compact('users', 'pagination'));
+    }
+
+    public function getAdmins(): View
+    {
+        $pagination = 25;
+        $users = User::where('permission_id', '2')
+            ->orderBy('id', 'desc')
+            ->paginate($pagination);
+
+        return view('manager.admins', compact('users', 'pagination'));
     }
 }

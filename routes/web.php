@@ -91,4 +91,6 @@ Route::controller(AccountController::class)->group(function () {
 
 Route::controller(ManageController::class)->group(function () {
     Route::get('/manager', 'dashboard')->name('manager');
+    Route::get('/manager/users', 'getUsers')->name('manager.users');
+    Route::get('/manager/admins', 'getAdmins')->name('manager.admins');
 });

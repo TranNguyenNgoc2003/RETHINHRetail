@@ -26,7 +26,7 @@
         <ul class="navbar-nav bg-black sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('manager') }}">
                 <img style="width: 120px;" src="{{ asset('images/Rethink-Logo-white.png') }}">
             </a>
 
@@ -35,7 +35,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ route('manager') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Bảng điều khiển</span>
                 </a>
@@ -61,9 +61,9 @@
                     data-bs-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Chức năng chính:</h6>
-                        <a class="collapse-item" href="#">Quản lý người dùng</a>
+                        <a class="collapse-item" href="{{ route('manager.users') }}">Quản lý người dùng</a>
                         <a class="collapse-item" href="#">Thêm tài khoản mới</a>
-                        <a class="collapse-item" href="#">Quản lý quản trị viên</a>
+                        <a class="collapse-item" href="{{ route('manager.admins') }}">Quản lý quản trị viên</a>
 
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    {{-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small"
@@ -165,7 +165,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
