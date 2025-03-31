@@ -46,4 +46,14 @@ class ManageController extends Controller
 
         return view('manager.users', compact('users', 'pagination'));
     }
+
+    public function getAdmins(): View
+    {
+        $pagination = 25;
+        $users = User::where('permission_id', '2')
+            ->orderBy('id', 'desc')
+            ->paginate($pagination);
+
+        return view('manager.admins', compact('users', 'pagination'));
+    }
 }
