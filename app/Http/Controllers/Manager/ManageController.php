@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Manager;
 use App\Http\Controllers\Controller;
 use App\Models\CustomerService;
 use App\Models\Order;
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -82,12 +83,16 @@ class ManageController extends Controller
     public function infoEdit($id)
     {
         $user = User::find($id);
-        return view('manager.infoEdit', compact('user'));
+
+        $permissions = Permission::all();
+
+        return view('manager.infoEdit', compact('user', 'permissions'));
     }
 
     public function updateUser(Request $request, $id)
     {
         $request->validate([
+            'role' => 'required|integer',
             'fullname' => 'required|string|max:255',
             'phone' => 'nullable|string|max:15',
             'birthday' => 'nullable|date',
@@ -101,7 +106,14 @@ class ManageController extends Controller
             $user->password = Hash::make($request->password);
         }
 
-        $user->update($request->all());
+        $user->update([
+            'permission_id' => $request->role,
+            'fullname' => $request->fullname,
+            'phone' => $request->phone,
+            'birthday' => $request->birthday,
+            'gender' => $request->gender,
+            'password' => $user->password,
+        ]);
 
         return redirect()->route('manager.users')->with('success', 'User updated successfully!');
     }
