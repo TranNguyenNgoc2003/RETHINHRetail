@@ -6,8 +6,7 @@
             <h1 class="users-edit__title">Thông tin người dùng</h1>
         </div>
         <div class="card shadow users-edit__content">
-            {{-- <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" --}}
-            <form action="#" method="POST" enctype="multipart/form-data" class="users-edit__form">
+            <form action="{{ route('manager.update', ['id' => $user->id]) }}" method="POST" enctype="multipart/form-data" class="users-edit__form">
                 @csrf
                 <div class="users-edit__group">
                     <label class="users-edit__avatar" for="avatar">
@@ -35,7 +34,7 @@
                     <div class="users-edit__group">
                         <label for="birthday" class="users-edit__label">Ngày sinh</label>
                         <input type="date" class="users-edit__input form-control" id="birthday" name="birthday"
-                            value="{{ $user->birthday }}" required>
+                            value="{{ $user->birthday }}">
                     </div>
                     <div class="users-edit__group">
                         <label for="gender" class="users-edit__label">Giới tính</label>

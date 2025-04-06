@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class ManageController extends Controller
@@ -61,5 +62,25 @@ class ManageController extends Controller
     {
         $user = User::find($id);
         return view('manager.infoEdit', compact('user'));
+    }
+
+    public function updateUser(Request $request, $id){
+        $request->validate([
+            'fullname' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:15',
+            'birthday' => 'nullable|date',
+            'gender' => 'nullable|string',
+            'password' => 'nullable|string|min:6|confirmed',
+        ]);
+
+        $user = User::find($id);
+
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        
+        $user->update($request->all());
+
+        return redirect()->route('manager.users')->with('success', 'User updated successfully!');
     }
 }
