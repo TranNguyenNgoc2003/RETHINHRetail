@@ -62,7 +62,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Chức năng chính:</h6>
                         <a class="collapse-item" href="{{ route('manager.users') }}">Quản lý người dùng</a>
-                        <a class="collapse-item" href="#">Thêm tài khoản mới</a>
+                        <a class="collapse-item" href="{{ route('manager.create') }}">Thêm tài khoản mới</a>
                         <a class="collapse-item" href="{{ route('manager.admins') }}">Quản lý quản trị viên</a>
 
                     </div>

@@ -58,13 +58,35 @@ class ManageController extends Controller
         return view('manager.admins', compact('users', 'pagination'));
     }
 
+    public function create(): View
+    {
+        return view('manager.create');
+    }
+
+    public function createUser(Request $request)
+    {
+        $request->validate([
+            'fullname' => 'required|string|max:250',
+            'email' => 'required|string|email:rfc,dns|max:250|unique:users,email',
+            'phone' => 'nullable|string|max:15',
+            'birthday' => 'nullable|date',
+            'gender' => 'nullable|string',
+            'password' => 'nullable|string|min:6|confirmed',
+        ]);
+
+        User::create($request->all());
+
+        return redirect()->route('manager.users');
+    }
+
     public function infoEdit($id)
     {
         $user = User::find($id);
         return view('manager.infoEdit', compact('user'));
     }
 
-    public function updateUser(Request $request, $id){
+    public function updateUser(Request $request, $id)
+    {
         $request->validate([
             'fullname' => 'required|string|max:255',
             'phone' => 'nullable|string|max:15',
@@ -78,7 +100,7 @@ class ManageController extends Controller
         if ($request->password) {
             $user->password = Hash::make($request->password);
         }
-        
+
         $user->update($request->all());
 
         return redirect()->route('manager.users')->with('success', 'User updated successfully!');

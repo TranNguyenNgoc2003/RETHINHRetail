@@ -95,4 +95,6 @@ Route::controller(ManageController::class)->group(function () {
     Route::get('/manager/admins', 'getAdmins')->name('manager.admins');
     Route::get('/manager/infoEdit/{id}', 'infoEdit')->name('manager.infoEdit');
     Route::post('/manager/update/{id}', 'updateUser')->name('manager.update');
+    Route::get('/manager/create', 'create')->name('manager.create');
+    Route::post('/manager/createUser', 'createUser')->name('manager.createUser');
 });
