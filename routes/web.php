@@ -101,8 +101,9 @@ Route::controller(ManageController::class)->group(function () {
 });
 
 Route::controller(ManagerOrderController::class)->group(function () {
-    Route::get('/manager/orders', 'orders')->name('manager.orders');
     Route::get('/manager/order/{id}', 'orderDetails')->name('manager.orderDetail');
     Route::post('/manager/order/updateStatus/{id}', 'updateStatus')->name('manager.updateStatus');
-    // Route::post('/manager/order/updateShipping/{id}', 'updateShipping')->name('manager.order.updateShipping');
+    Route::get('/manager/cancelledOrders', 'cancelled')->name('manager.cancelledOrders');
+    Route::get('/manager/deliveredOrders', 'delivere')->name('manager.deliveredOrders');
+    Route::get('/manager/processingOrders', 'processing')->name('manager.processingOrders');
 });

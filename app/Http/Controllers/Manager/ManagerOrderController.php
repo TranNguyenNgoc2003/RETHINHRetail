@@ -12,12 +12,31 @@ use Illuminate\View\View;
 
 class ManagerOrderController extends Controller
 {
-    public function orders(): View
+    public function cancelled(): View
     {
         $pagination = 25;
-        $orders = Order::orderBy('id', 'desc')
+        $orders = Order::where('shipping_status', 'Đơn hàng đã hủy')
+            ->orderBy('id', 'desc')
             ->paginate($pagination);
-        return view('manager.orders', compact('orders', 'pagination'));
+        return view('manager.cancelledOrders', compact('orders', 'pagination'));
+    }
+
+    public function delivere(): View
+    {
+        $pagination = 25;
+        $orders = Order::where('shipping_status', 'Đã hoàn thành')
+            ->orderBy('id', 'desc')
+            ->paginate($pagination);
+        return view('manager.deliveredOrders', compact('orders', 'pagination'));
+    }
+
+    public function processing(): View
+    {
+        $pagination = 25;
+        $orders = Order::where('shipping_status', 'Đang giao')
+            ->orderBy('id', 'desc')
+            ->paginate($pagination);
+        return view('manager.processingOrders', compact('orders', 'pagination'));
     }
 
     public function orderDetails($id): View

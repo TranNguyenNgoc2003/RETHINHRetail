@@ -3,7 +3,7 @@
 @section('content-manage')
     <div class="list-orders">
         <div class="list-orders__header">
-            <h1 class="list-orders__title">Danh sách đơn hàng</h1>
+            <h1 class="list-orders__title">Danh sách đơn hàng đã hủy</h1>
             <div class="list-orders__search">
                 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">

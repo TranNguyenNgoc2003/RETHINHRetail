@@ -113,7 +113,7 @@
                         @endif
                     @endforeach
                     <div class="order-detail__button">
-                        <a href="{{ route('manager.orders') }}" class="btn btn-outline-primary">Trở về</a>
+                        <a href="{{ url()->previous() }}" class="btn btn-outline-primary">Trở về</a>
                         <!-- Modal trigger button -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
                             Chỉnh sửa
@@ -140,7 +140,7 @@
                                     <div class="order-detail__group">
                                         <label for="payment_status" class="order-detail__label">Trạng thái thanh toán</label>
                                         <select class="order-detail__input form-control" id="payment_status" name="payment_status">
-                                            @foreach (['Chờ xử lý', 'Đã thanh toán', 'Thất bại', 'Đã hoàn tiền'] as $payment_status)
+                                            @foreach (['Chờ xử lý', 'Thất bại', 'Đã thanh toán', 'Đã hoàn tiền'] as $payment_status)
                                                 <option value="{{ $payment_status }}"
                                                     {{ ($lables_detail['payment_status'] ?? '') === $payment_status ? 'selected' : '' }}>
                                                     {{ $payment_status }}

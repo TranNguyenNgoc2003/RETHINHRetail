@@ -82,10 +82,9 @@
                     data-bs-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Thông tin đơn hàng:</h6>
-                        <a class="collapse-item" href="">Đơn hàng đang xử lý</a>
-                        <a class="collapse-item" href="">Đơn hàng đã giao</a>
-                        <a class="collapse-item" href="">Đơn hàng đã hủy</a>
-                        <a class="collapse-item" href="{{ route('manager.orders') }}">Tất cả đơn hàng</a>
+                        <a class="collapse-item" href="{{ route('manager.processingOrders') }}">Đơn hàng đang xử lý</a>
+                        <a class="collapse-item" href="{{ route('manager.deliveredOrders') }}">Đơn hàng đã giao</a>
+                        <a class="collapse-item" href="{{ route('manager.cancelledOrders') }}">Đơn hàng đã hủy</a>
                     </div>
                 </div>
             </li>
