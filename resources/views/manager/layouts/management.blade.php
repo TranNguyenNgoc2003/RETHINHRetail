@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="{{ asset('css/style-admin.min.css') }}" rel="stylesheet">
-    @vite(['resources/js/app.js'])
+    <link href="{{ asset('css/management.css') }}" rel="stylesheet">
+    {{-- @vite(['resources/js/app.js']) --}}
 </head>
 
 <body id="page-top">
@@ -84,7 +85,7 @@
                         <a class="collapse-item" href="">Đơn hàng đang xử lý</a>
                         <a class="collapse-item" href="">Đơn hàng đã giao</a>
                         <a class="collapse-item" href="">Đơn hàng đã hủy</a>
-                        <a class="collapse-item" href="">Tất cả đơn hàng</a>
+                        <a class="collapse-item" href="{{ route('manager.orders') }}">Tất cả đơn hàng</a>
                     </div>
                 </div>
             </li>

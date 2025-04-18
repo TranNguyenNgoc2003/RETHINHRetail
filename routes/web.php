@@ -9,6 +9,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CustomerServiceController;
 use App\Http\Controllers\Manager\AccountController;
 use App\Http\Controllers\Manager\ManageController;
+use App\Http\Controllers\Manager\ManagerOrderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShippingController;
@@ -48,7 +49,7 @@ Route::controller(OrderController::class)->group(function () {
     Route::get('/complete/{orderId}', 'complete')->name('complete');
     Route::get('/history', 'history')->name('history');
     Route::get('/reorder/{orderId}', 'reorder')->name('order.reorder');
-    Route::post('/checkout/vnpay/{orderId}','createVnpayPayment')->name('checkout.vnpay');
+    Route::post('/checkout/vnpay/{orderId}', 'createVnpayPayment')->name('checkout.vnpay');
     Route::get('/vnpay-return', 'vnpayReturn')->name('vnpay.return');
 });
 
@@ -97,4 +98,11 @@ Route::controller(ManageController::class)->group(function () {
     Route::post('/manager/update/{id}', 'updateUser')->name('manager.update');
     Route::get('/manager/create', 'create')->name('manager.create');
     Route::post('/manager/createUser', 'createUser')->name('manager.createUser');
+});
+
+Route::controller(ManagerOrderController::class)->group(function () {
+    Route::get('/manager/orders', 'orders')->name('manager.orders');
+    Route::get('/manager/order/{id}', 'orderDetails')->name('manager.orderDetail');
+    Route::post('/manager/order/updateStatus/{id}', 'updateStatus')->name('manager.updateStatus');
+    // Route::post('/manager/order/updateShipping/{id}', 'updateShipping')->name('manager.order.updateShipping');
 });

@@ -126,7 +126,7 @@
                             <span class="list-order__status font-weight-bold">Trạng thái</span>
                         </div>
                         @foreach ($recent_orders as $recent_order)
-                            <a href="" class="list-order">
+                            <a href="{{ route('manager.orderDetail', ['id' => $recent_order->id]) }}" class="list-order">
                                 <span class="list-order__id">{{ $recent_order->id }}</span>
                                 <span class="list-order__name">{{ $recent_order->fullname }}</span>
                                 <span class="list-order__price">{{ number_format($recent_order->total_price, 0, ',', '.') }}

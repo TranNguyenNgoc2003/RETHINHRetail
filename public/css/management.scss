@@ -9,13 +9,14 @@ List Order
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+
     &:hover {
         // text-decoration: none;
         color: black;
     }
 
     &__id {
-        width: 10%;
+        width: 8%;
         text-align: center;
     }
 
@@ -30,12 +31,12 @@ List Order
     }
 
     &__time {
-        width: 20%;
+        width: 17%;
         text-align: center;
     }
 
     &__status {
-        width: 15%;
+        width: 20%;
         text-align: center;
     }
 }
@@ -108,9 +109,11 @@ Users edit
 */
 .users-edit {
     margin-bottom: 2%;
+
     &__header {
         margin-bottom: 10px;
     }
+
     &__content {
         background: #fff;
         padding: 20px;
@@ -241,4 +244,201 @@ Users edit
             }
         }
     }
+}
+
+/*
+---------------------------------------------
+List Order
+---------------------------------------------
+*/
+.list-orders {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__search {
+        form {
+            border: 1px solid black;
+            border-radius: 6px;
+        }
+    }
+
+    &__table {
+        background-color: white;
+    }
+
+    &__link {
+        color: black;
+
+        &:hover {
+            // text-decoration: none;
+            color: black;
+        }
+    }
+}
+
+.table-orders {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 10px 0px 5px 0px;
+
+    &__header {
+        border-bottom: 1px solid #ccc;
+        font-weight: bold;
+    }
+
+    &__id {
+        width: 10%;
+    }
+
+    &__name {
+        width: 20%;
+    }
+
+    &__price {
+        width: 25%;
+    }
+
+    &__date {
+        width: 20%;
+    }
+
+    &__status {
+        width: 25%;
+    }
+
+}
+
+/* 
+---------------------------------------------
+Order Detail
+--------------------------------------------- 
+*/
+.order-detail {
+    margin-bottom: 2%;
+
+    &__header {
+        margin-bottom: 10px;
+    }
+
+    &__content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    &__form {
+        padding: 20px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    &__info {
+        display: flex;
+    }
+
+    &__title {
+        font-weight: bold;
+        padding-right: 5px;
+    }
+
+    &__label {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    &__input {
+        height: 40px;
+        margin-bottom: 15px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+    }
+
+    &__button {
+        display: flex;
+        justify-content: end;
+
+        a {
+            margin-right: 15px;
+        }
+    }
+
+    .product-details {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px dashed #ccc;
+
+        &__image {
+            width: 20%;
+            margin-right: 10px;
+
+            img {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+            }
+        }
+
+        &__item {
+            width: 80%;
+            margin-top: 25px;
+            padding-left: 40px;
+
+            &--info {
+                &-title {
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+
+                &-description {
+                    margin-top: 5px;
+                    font-size: 14px;
+                    color: var(--muted-foreground);
+                }
+            }
+
+            &--price {
+                display: flex;
+
+                &-title {
+                    width: 80px;
+                }
+
+                &-title,
+                &-description {
+                    font-size: 16px;
+                    color: var(--muted-foreground);
+                }
+
+                &-description {
+                    margin-left: 10px;
+                }
+            }
+        }
+
+    }
+
+    .modal-footer {
+        margin-top: 15px;
+    }
+
+}
+
+
+.order-divider {
+    border-bottom: 1px dashed #ccc;
+    // margin: 5px 0px;
 }

@@ -129,6 +129,12 @@
                                             {{ $lables_detail['status'] }}
                                         </p>
                                     </div>
+                                    <div class="shipping-details__body">
+                                        <div class="shipping-details__body--title">Trạng thái đơn hàng:</div>
+                                        <p class="shipping-details__body--info">
+                                            {{ $lables_detail['shipping_status'] }}
+                                        </p>
+                                    </div>
                                     <div class="line-history"></div>
                                     <div class="shipping-details__body">
                                         <div class="shipping-details__body--title">Tổng đơn hàng:</div>
@@ -159,6 +165,12 @@
                                         <div class="shipping-details__body--title">Phương thức thanh toán:</div>
                                         <p class="shipping-details__body--info">
                                             {{ $lables_detail['payment_method'] }}
+                                        </p>
+                                    </div>
+                                    <div class="shipping-details__body">
+                                        <div class="shipping-details__body--title">Trạng thái thanh toán:</div>
+                                        <p class="shipping-details__body--info">
+                                            {{ $lables_detail['payment_status'] }}
                                         </p>
                                     </div>
                                 </div>
