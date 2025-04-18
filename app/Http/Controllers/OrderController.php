@@ -250,7 +250,7 @@ class OrderController extends Controller
         $discount = Session::get('coupon')['discount'] ?? 0;
         $total = $subtotal + $shipping_fee - $discount;
         $cartItems = Cart::where('user_id', $user_id)->get();
-        
+
         if ($secureHash === $vnp_SecureHash) {
 
             if ($request->input('vnp_ResponseCode') == "00") {
@@ -269,6 +269,7 @@ class OrderController extends Controller
                         'status' => $request->input('order_note'),
                         'is_completed' => true,
                         'shipping_status' => 'Đang giao',
+                        'payment_status' => 'Đã thanh toán',
                         'created_date' => now(),
                     ]);
 
@@ -339,7 +340,8 @@ class OrderController extends Controller
                     'count' => $item->count,
                     'product_price' => $item->total_price,
                     'payment_method' => $payment->description,
-                    'shipping_status' => $order->shipping_status
+                    'shipping_status' => $order->shipping_status,
+                    'payment_status' => $order->payment_status
                 ];
 
                 if (!isset($order_count[$order->id])) {
