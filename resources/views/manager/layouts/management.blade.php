@@ -94,44 +94,51 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                SẢN PHẨM & KHO HÀNG
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                     aria-expanded="false" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <i class="fas fa-box-open"></i>
+                    <span>Quản lý sản phẩm</span>
                     <i class="fas fa-angle-down float-right" style="font-size: 18px; margin-top: 5px"></i>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
                     data-bs-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <h6 class="collapse-header">Chức năng chính:</h6>
+                        <a class="collapse-item" href="{{ route('manager.allProduct') }}">Danh sách sản phẩm</a>
+                        <a class="collapse-item" href="{{ route('manager.newProduct') }}">Thêm sản phẩm mới</a>
+                        <a class="collapse-item" href="#">Quản lý tồn kho</a>
                     </div>
                 </div>
             </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                YÊU CẦU & TIN NHẤN
+            </div>
 
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item - Pending Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePending"
+                    aria-expanded="false" aria-controls="collapsePending">
+                    <i class="fas fa-tasks"></i>
+                    <span>Xử lý yêu cầu</span>
+                    <i class="fas fa-angle-down float-right" style="font-size: 18px; margin-top: 5px"></i>
+                </a>
+                <div id="collapsePending" class="collapse" aria-labelledby="headingPending"
+                    data-bs-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Chức năng chính:</h6>
+                        <a class="collapse-item" href="#">Yêu cầu đang xử lý</a>
+                        <a class="collapse-item" href="#">Yêu cầu đã xử lý</a>
+                    </div>
+                </div>
             </li>
         </ul>
 

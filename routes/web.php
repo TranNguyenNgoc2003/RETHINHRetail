@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerServiceController;
 use App\Http\Controllers\Manager\AccountController;
 use App\Http\Controllers\Manager\ManageController;
 use App\Http\Controllers\Manager\ManagerOrderController;
+use App\Http\Controllers\Manager\ProductAndInventoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShippingController;
@@ -106,4 +107,13 @@ Route::controller(ManagerOrderController::class)->group(function () {
     Route::get('/manager/cancelledOrders', 'cancelled')->name('manager.cancelledOrders');
     Route::get('/manager/deliveredOrders', 'delivere')->name('manager.deliveredOrders');
     Route::get('/manager/processingOrders', 'processing')->name('manager.processingOrders');
+});
+
+Route::controller(ProductAndInventoryController::class)->group(function () {
+    Route::get('/manager/allProduct', 'allProduct')->name('manager.allProduct');
+    Route::get('/manager/editProduct/{id}', 'editProduct')->name('manager.editProduct');
+    Route::post('/manager/updateProduct/{id}', 'updateProduct')->name('manager.updateProduct');
+    Route::get('/manager/deleteImage/{id}', 'deleteImage')->name('manager.deleteImage');
+    Route::get('/manager/newProduct', 'newProduct')->name('manager.newProduct');
+    Route::post('/manager/addProduct', 'addProduct')->name('manager.addProduct');
 });
