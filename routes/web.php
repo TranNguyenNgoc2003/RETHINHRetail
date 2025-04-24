@@ -11,6 +11,7 @@ use App\Http\Controllers\Manager\AccountController;
 use App\Http\Controllers\Manager\ManageController;
 use App\Http\Controllers\Manager\ManagerOrderController;
 use App\Http\Controllers\Manager\ProductAndInventoryController;
+use App\Http\Controllers\Manager\RequestsController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShippingController;
@@ -116,4 +117,11 @@ Route::controller(ProductAndInventoryController::class)->group(function () {
     Route::get('/manager/deleteImage/{id}', 'deleteImage')->name('manager.deleteImage');
     Route::get('/manager/newProduct', 'newProduct')->name('manager.newProduct');
     Route::post('/manager/addProduct', 'addProduct')->name('manager.addProduct');
+});
+
+Route::controller(RequestsController::class)->group(function () {
+    Route::get('/manager/processedRequests', 'processed')->name('manager.processedRequests');
+    Route::get('/manager/pendingRequests', 'pending')->name('manager.pendingRequests');
+    Route::post('manager.updateService/{id}', 'updateService')->name('manager.updateService');
+
 });

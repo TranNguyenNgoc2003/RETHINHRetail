@@ -645,3 +645,109 @@ Product edit
         padding: 10px 20px;
     }
 }
+
+/*
+---------------------------------------------
+List Request
+---------------------------------------------
+*/
+.services {
+    margin-bottom: 10px;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__search {
+        form {
+            border: 1px solid black;
+            border-radius: 6px;
+        }
+    }
+
+    &__table {
+        padding: 20px 30px;
+        background-color: white;
+    }
+
+    &__link {
+        color: black;
+    }
+
+    &__divider {
+        border-bottom: 1px dashed #ccc;
+    }
+}
+
+.table-services {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+
+    &__header {
+        border-bottom: 1px solid #ccc;
+        font-weight: bold;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        margin-bottom: 0px;
+    }
+
+    &__id {
+        width: 8%;
+        text-align: center;
+    }
+
+    &__name {
+        width: 30%;
+        text-align: center;
+    }
+
+    &__user {
+        width: 25%;
+        text-align: center;
+    }
+
+    &__spworker {
+        width: 20%;
+        text-align: center;
+    }
+
+    &__time {
+        width: 15%;
+        text-align: center;
+    }
+
+    &__content:hover {
+        text-decoration: underline;
+    }
+
+}
+
+.height-services {
+    height: 50px;
+    line-height: 50px;
+    margin-top: 10px;
+}
+
+.services-divider {
+    margin: 10px auto;
+    width: 95%;
+    border-bottom: 1px dashed #ccc;
+}
+
+.services-group {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    line-height: 30px;
+
+    &__title {
+        width: 25%;
+        font-weight: bold;
+    }
+
+    &__content {
+        width: 75%;
+    }
+}
