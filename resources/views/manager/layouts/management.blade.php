@@ -125,8 +125,8 @@
 
             <!-- Nav Item - Pending Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePending"
-                    aria-expanded="false" aria-controls="collapsePending">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                    data-bs-target="#collapsePending" aria-expanded="false" aria-controls="collapsePending">
                     <i class="fas fa-tasks"></i>
                     <span>Xử lý yêu cầu</span>
                     <i class="fas fa-angle-down float-right" style="font-size: 18px; margin-top: 5px"></i>
@@ -135,8 +135,9 @@
                     data-bs-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Chức năng chính:</h6>
-                        <a class="collapse-item" href="#">Yêu cầu đang xử lý</a>
-                        <a class="collapse-item" href="#">Yêu cầu đã xử lý</a>
+                        <a class="collapse-item" href="{{ route('manager.pendingRequests') }}">Yêu cầu đang xử
+                            lý</a>
+                        <a class="collapse-item" href="{{ route('manager.processedRequests') }}">Yêu cầu đã xử lý</a>
                     </div>
                 </div>
             </li>
@@ -193,7 +194,7 @@
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown" style=" margin-left: -50px ">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{ route('manager.infoEdit', ['id' => Auth::guard('manager')->user()->id]) }}">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Hồ sơ
                                     </a>
                                     <a class="dropdown-item" href="#">

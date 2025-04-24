@@ -34,7 +34,6 @@
                     <li class="table-products__option">
                         Cấu hình
                     </li>
-
                 </ul>
                 @foreach ($products->take($pagination) as $product)
                     <a href="{{ route('manager.editProduct', ['id' => $product->id]) }}" class="list-products__link">
