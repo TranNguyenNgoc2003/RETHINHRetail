@@ -27,7 +27,7 @@
         <ul class="navbar-nav bg-black sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('manager') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('manager.dashboard') }}">
                 <img style="width: 120px;" src="{{ asset('images/Rethink-Logo-white.png') }}">
             </a>
 
@@ -36,7 +36,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('manager') }}">
+                <a class="nav-link" href="{{ route('manager.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Bảng điều khiển</span>
                 </a>

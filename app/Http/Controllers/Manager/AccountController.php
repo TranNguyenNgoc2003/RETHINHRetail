@@ -28,7 +28,7 @@ class AccountController extends Controller
         if ($user && $user->permission_id == 2) {
             if (Auth::guard('manager')->attempt($credentials)) {
                 $request->session()->regenerate();
-                return redirect()->route('manager')->with('success', 'Đăng nhập thành công!');
+                return redirect()->route('manager.dashboard')->with('success', 'Đăng nhập thành công!');
             } else {
                 return back()->with('success', 'Sai mật khẩu hoặc email.');
             }
