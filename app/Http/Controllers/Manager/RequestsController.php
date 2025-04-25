@@ -16,7 +16,7 @@ class RequestsController extends Controller
 
         $services = CustomerService::where('end_time', '!=', null)
             ->with('supportWorker')
-            ->orderBy('id', 'desc')
+            ->orderBy('id', 'asc')
             ->paginate($pagination);
 
         return view('manager.processedRequests', compact('services', 'pagination'));
@@ -28,7 +28,7 @@ class RequestsController extends Controller
 
         $services = CustomerService::where('end_time', null)
             ->with('supportWorker')
-            ->orderBy('id', 'desc')
+            ->orderBy('id', 'asc')
             ->paginate($pagination);
 
         return view('manager.pendingRequests ', compact('services', 'pagination'));
