@@ -1,4 +1,4 @@
-@extends('layouts.loginAndRegister')
+@extends('layouts.LoginAndRegister')
 
 @section('content')
 <section class="signup">
