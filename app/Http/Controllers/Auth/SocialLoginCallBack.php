@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
-class SocialLoginCallback extends Controller
+class SocialLoginCallBack extends Controller
 {
     public function handleProviderCallback($provider)
     {
