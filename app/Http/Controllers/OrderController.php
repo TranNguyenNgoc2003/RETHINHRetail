@@ -167,7 +167,7 @@ class OrderController extends Controller
         $vnp_OrderType =  "billpayment";
         $vnp_Amount = (int) ($total * 100);
         $vnp_Locale = 'vn';
-        $vnp_BankCode = 'NCB';
+        $vnp_BankCode = '';
         $vnp_IpAddr = $request->ip();
 
         $inputData = array(
